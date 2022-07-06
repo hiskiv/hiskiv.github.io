@@ -1,11 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-06T11:25:22+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-06T14:54:11+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
 </subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">【论文笔记】Batch Normalization</title><link href="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" rel="alternate" type="text/html" title="【论文笔记】Batch Normalization" /><published>2022-07-06T00:00:00+08:00</published><updated>2022-07-06T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/06/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91Batch%20Normalization</id><content type="html" xml:base="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">&lt;p&gt;论文原文链接：&lt;a href=&quot;https://arxiv.org/abs/1502.03167&quot;&gt;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift 这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。 一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。</summary></entry><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;在我们使用随机梯度下降方法（SGD）时，我们会往往面临这样的问题：每一层参数稍微的改变会导致后面整个网络的参数产生问题。也就是，网络每一层的参数需要不断去适应该层输入的分布。若输入的分布发生了一定变化，称作协变量偏移（Covariate shift）。如果能够保证每一层的输入分布维持不变，那么参数学习难度将大大降低。&lt;/p&gt;
+
+&lt;p&gt;我们可以将网络的一层稍稍扩展，考虑一个子网络。对于一个子网络，在使用Sigmoid激活函数时易发生梯度消失问题，输入的有些分量容易达到饱和域。我们可以使用ReLU激活函数一定程度上解决该问题；而BN提出了新的解决方案，若能保持在训练过程中非线性激活函数的输入分布稳定不变，我们将减少陷在饱和域的可能，从而加速训练。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于网络内部节点之间产生的分布变化，我们称之为&lt;em&gt;internal covariate shift&lt;/em&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;towards-batch-normalization&quot;&gt;Towards Batch Normalization&lt;/h3&gt;
+
+&lt;h4 id=&quot;白化&quot;&gt;白化&lt;/h4&gt;
+
+&lt;p&gt;早先的研究已经指出，对输入进行白化（whiten）操作能够使网络训练更快地收敛。所谓白化，即对输入进行线性变换，使输入分布的平均值为0，方差为单位值（1），且各变量间是不相关的。&lt;/p&gt;
+
+&lt;p&gt;利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即正则化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。&lt;/p&gt;
+
+&lt;h4 id=&quot;正则化层&quot;&gt;正则化层&lt;/h4&gt;
+
+&lt;p&gt;如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，即导致我们上面所说的情况。然而在实际中，要对白化方式计算后一项是极其困难的，因此作者提出了Batch Normalization方法。&lt;/p&gt;
+
+&lt;h4 id=&quot;bn层&quot;&gt;BN层&lt;/h4&gt;
+
+&lt;p&gt;作者首先对原本的白化方法做了两个修改：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;修改1：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，从原先对整个输入向量进行正则化转变为&lt;strong&gt;对输入向量的每一个分量进行正则化&lt;/strong&gt;。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。&lt;/p&gt;
+
+&lt;p&gt;同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。&lt;/p&gt;
+
+&lt;p&gt;可见，当$\gamma^{(k)}=\sqrt{Var[x^{(k)}]}$，而$\beta^{(k)}=E[x^{(k)}]$时BN层退化为恒等映射。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;修改2：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;由于我们通常采用mini-batch的SGD方法，因此我们在对分量进行正则化时，不再费力的对原问题的整个样本集分布求均值与方差，而用该batch中的样本来近似均值与方差。&lt;/p&gt;
+
+&lt;p&gt;这样我们得到了Batch Normalization Transform：$BN_{\gamma,\beta}: x_{1…m}\rightarrow y_{1…m}$，其forward pass的算法如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3x76e1vzgj30mx0gj451.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注意，这里第2、3步中的平方与开根均为逐分量运算，与前面的修改1是一致的。&lt;/p&gt;
+
+&lt;h3 id=&quot;训练&quot;&gt;训练&lt;/h3&gt;
+
+&lt;p&gt;对于上面的BN层变换，作者推导出了其反向传播的公式，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3x7lp8a1aj30lr0bzgqe.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift 这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。 一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。 Introduction 在我们使用随机梯度下降方法（SGD）时，我们会往往面临这样的问题：每一层参数稍微的改变会导致后面整个网络的参数产生问题。也就是，网络每一层的参数需要不断去适应该层输入的分布。若输入的分布发生了一定变化，称作协变量偏移（Covariate shift）。如果能够保证每一层的输入分布维持不变，那么参数学习难度将大大降低。 我们可以将网络的一层稍稍扩展，考虑一个子网络。对于一个子网络，在使用Sigmoid激活函数时易发生梯度消失问题，输入的有些分量容易达到饱和域。我们可以使用ReLU激活函数一定程度上解决该问题；而BN提出了新的解决方案，若能保持在训练过程中非线性激活函数的输入分布稳定不变，我们将减少陷在饱和域的可能，从而加速训练。 对于网络内部节点之间产生的分布变化，我们称之为internal covariate shift。 Towards Batch Normalization 白化 早先的研究已经指出，对输入进行白化（whiten）操作能够使网络训练更快地收敛。所谓白化，即对输入进行线性变换，使输入分布的平均值为0，方差为单位值（1），且各变量间是不相关的。 利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即正则化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。 正则化层 如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，即导致我们上面所说的情况。然而在实际中，要对白化方式计算后一项是极其困难的，因此作者提出了Batch Normalization方法。 BN层 作者首先对原本的白化方法做了两个修改： 修改1： 首先，从原先对整个输入向量进行正则化转变为对输入向量的每一个分量进行正则化。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。 同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。 可见，当$\gamma^{(k)}=\sqrt{Var[x^{(k)}]}$，而$\beta^{(k)}=E[x^{(k)}]$时BN层退化为恒等映射。 修改2： 由于我们通常采用mini-batch的SGD方法，因此我们在对分量进行正则化时，不再费力的对原问题的整个样本集分布求均值与方差，而用该batch中的样本来近似均值与方差。 这样我们得到了Batch Normalization Transform：$BN_{\gamma,\beta}: x_{1…m}\rightarrow y_{1…m}$，其forward pass的算法如下图所示： 注意，这里第2、3步中的平方与开根均为逐分量运算，与前面的修改1是一致的。 训练 对于上面的BN层变换，作者推导出了其反向传播的公式，如下图所示：</summary></entry><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。&lt;/p&gt;
 
