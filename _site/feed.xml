@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-05T16:59:16+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
-</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-06T11:25:22+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">【论文笔记】Batch Normalization</title><link href="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" rel="alternate" type="text/html" title="【论文笔记】Batch Normalization" /><published>2022-07-06T00:00:00+08:00</published><updated>2022-07-06T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/06/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91Batch%20Normalization</id><content type="html" xml:base="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">&lt;p&gt;论文原文链接：&lt;a href=&quot;https://arxiv.org/abs/1502.03167&quot;&gt;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift 这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。 一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。</summary></entry><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。&lt;/p&gt;
 
@@ -35,7 +41,7 @@
 
 &lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3w3vaw6q7j30g108fac8.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，有两种解决方法：&lt;/p&gt;
+&lt;p&gt;即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;对加上的$x$进行投影操作&lt;/li&gt;
@@ -52,9 +58,35 @@
 
 &lt;p&gt;首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。&lt;/p&gt;
 
+&lt;h3 id=&quot;测试&quot;&gt;测试&lt;/h3&gt;
+
+&lt;p&gt;作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzbx1xxfj316i0dkdon.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;shortcuts-的影响&quot;&gt;Shortcuts 的影响&lt;/h4&gt;
+
+&lt;p&gt;记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试：&lt;/p&gt;
+
+&lt;p&gt;A. 零扩充&lt;/p&gt;
+
+&lt;p&gt;B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射&lt;/p&gt;
+
+&lt;p&gt;C. 对整个shortcut做投影映射&lt;/p&gt;
+
+&lt;p&gt;测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzgqaracj30n60h3wni.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。&lt;/p&gt;
+
+&lt;h3 id=&quot;感想&quot;&gt;感想&lt;/h3&gt;
+
+&lt;p&gt;读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？&lt;/p&gt;
+
 &lt;blockquote&gt;
-  &lt;p&gt;后续需要精通：Batch Normalization&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><summary type="html">论文原文链接：Deep Residual Learning for Image Recognition 自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。 从一个问题说起 增加网络的层数（深度）一定可以提高模型的泛化能力吗？ 对于早期最普通的全连接网络而言，往往使用Sigmoid函数作为激活函数，由于Sigmoid函数在稍微大一点的位置梯度便趋近为0，因此在一个很深的网络中极有可能导致某个神经元的梯度退化到0，使得反向传播后面的梯度均被限制住，即所谓梯度消失问题。通过使用ReLU激活函数以及加入批归一化层(Batch Normalization)后，梯度消失问题基本能够解决，模型能够保证收敛。 但在继续增大网络层数时，人们发现，错误率不降反升。如下图，我们发现不论是在训练集还是测试集上，在增加层数后误差均升高。由此可知该现象不是因过拟合产生的（否则训练集误差应更低）。在论文中将该现象成为degradation。 疑问：产生该现象的理论依据是什么？ Degradation现象的存在说明并非所有问题都能够简单地通过普通网络模型来进行拟合。但我们至少能够人为地构造一个网络，使得较深模型得到的结果并不比层数较浅的模型来得差。构造方法颇为直接：我们可以在浅层模型的基础上，在后面加上更深的层，并调整新加入层的权重，使其成为单位映射。这个构造便是Residual概念一个最核心的intuition。 Residual Learning 残差映射 在上面，我们构造了一个单位映射，然而大多数模型中神经元采用的都是非线性层（如Sigmoid，ReLU等）。利用非线性层去拟合一个线性（单位）映射往往效果并不佳。 本论文创造性地提出了Residual Learning：设目标拟合函数为$\mathcal{H}(x)$，我们学习的非线性层参数用于拟合函数$\mathcal{F}(x)=\mathcal{H}(x)-x$。作者发现，最优化该残差函数比直接优化原函数更容易（深层次原因可能得等下学期学了优化理论之后才能理解）。在极端情况下，$\mathcal{H}(x)=x$，此时直接将参数函数$\mathcal{F}(x)$拟合至0比直接拟合原函数到恒等映射的难度显然更简单一些。 这里突然想到，如果目标函数$\mathcal{H}(x)=0$，或$\mathcal{H}(x)=2x$，那么残差函数可能并没有更优。但作者也在文中提到，当目标函数比起零映射更接近恒等映射时，这个优化能够提供一个好的预处理效果。 残差块 作者提出的一个基本残差块的结果如下图所示： 即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，有两种解决方法： 对加上的$x$进行投影操作 对加上的$x$，在多出的分量上补零 在上图所示的残差块中，残差函数包括两个全连接层。事实上两个以上全连接层均可以尝试，但是只有一个全连接层时该残差块就退化为$y=\sigma(W_1 x + x)$的形式，与原本普通层并无差异。此外，残差块还可以应用到卷积层上。 网络结构 作者提出的ResNet网络结构如下图： 首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。 后续需要精通：Batch Normalization</summary></entry><entry><title type="html">Example content</title><link href="http://localhost:4000/2017/11/22/example-content/" rel="alternate" type="text/html" title="Example content" /><published>2017-11-22T00:00:00+08:00</published><updated>2017-11-22T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/22/example-content</id><content type="html" xml:base="http://localhost:4000/2017/11/22/example-content/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
+  &lt;p&gt;读完后续需要精通：Batch Normalization&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Deep Residual Learning for Image Recognition 自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。 从一个问题说起 增加网络的层数（深度）一定可以提高模型的泛化能力吗？ 对于早期最普通的全连接网络而言，往往使用Sigmoid函数作为激活函数，由于Sigmoid函数在稍微大一点的位置梯度便趋近为0，因此在一个很深的网络中极有可能导致某个神经元的梯度退化到0，使得反向传播后面的梯度均被限制住，即所谓梯度消失问题。通过使用ReLU激活函数以及加入批归一化层(Batch Normalization)后，梯度消失问题基本能够解决，模型能够保证收敛。 但在继续增大网络层数时，人们发现，错误率不降反升。如下图，我们发现不论是在训练集还是测试集上，在增加层数后误差均升高。由此可知该现象不是因过拟合产生的（否则训练集误差应更低）。在论文中将该现象成为degradation。 疑问：产生该现象的理论依据是什么？ Degradation现象的存在说明并非所有问题都能够简单地通过普通网络模型来进行拟合。但我们至少能够人为地构造一个网络，使得较深模型得到的结果并不比层数较浅的模型来得差。构造方法颇为直接：我们可以在浅层模型的基础上，在后面加上更深的层，并调整新加入层的权重，使其成为单位映射。这个构造便是Residual概念一个最核心的intuition。 Residual Learning 残差映射 在上面，我们构造了一个单位映射，然而大多数模型中神经元采用的都是非线性层（如Sigmoid，ReLU等）。利用非线性层去拟合一个线性（单位）映射往往效果并不佳。 本论文创造性地提出了Residual Learning：设目标拟合函数为$\mathcal{H}(x)$，我们学习的非线性层参数用于拟合函数$\mathcal{F}(x)=\mathcal{H}(x)-x$。作者发现，最优化该残差函数比直接优化原函数更容易（深层次原因可能得等下学期学了优化理论之后才能理解）。在极端情况下，$\mathcal{H}(x)=x$，此时直接将参数函数$\mathcal{F}(x)$拟合至0比直接拟合原函数到恒等映射的难度显然更简单一些。 这里突然想到，如果目标函数$\mathcal{H}(x)=0$，或$\mathcal{H}(x)=2x$，那么残差函数可能并没有更优。但作者也在文中提到，当目标函数比起零映射更接近恒等映射时，这个优化能够提供一个好的预处理效果。 残差块 作者提出的一个基本残差块的结果如下图所示： 即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法： 对加上的$x$进行投影操作 对加上的$x$，在多出的分量上补零 在上图所示的残差块中，残差函数包括两个全连接层。事实上两个以上全连接层均可以尝试，但是只有一个全连接层时该残差块就退化为$y=\sigma(W_1 x + x)$的形式，与原本普通层并无差异。此外，残差块还可以应用到卷积层上。 网络结构 作者提出的ResNet网络结构如下图： 首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。 测试 作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。 Shortcuts 的影响 记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试： A. 零扩充 B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射 C. 对整个shortcut做投影映射 测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。 最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。 感想 读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？ 读完后续需要精通：Batch Normalization</summary></entry><entry><title type="html">Example content</title><link href="http://localhost:4000/2017/11/22/example-content/" rel="alternate" type="text/html" title="Example content" /><published>2017-11-22T00:00:00+08:00</published><updated>2017-11-22T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/22/example-content</id><content type="html" xml:base="http://localhost:4000/2017/11/22/example-content/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;another-page&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
 
@@ -1172,102 +1204,4 @@ to contain the unmodified markdown).&lt;/li&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;Social Media Impocalypse&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">Structure of _config.yml has changed Social media usernames are now located under author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;. disqus is now a top-level entry (moved from author). Now has font, font_accent and google_fonts fields that are mandatory. Now defaults to the blog layout, old style is available via blog-by-tag layout, see archive.html.</summary></entry><entry><title type="html">Features</title><link href="http://localhost:4000/2016/03/08/introducing-hydejack/" rel="alternate" type="text/html" title="Features" /><published>2016-03-08T00:00:00+08:00</published><updated>2016-03-08T00:00:00+08:00</updated><id>http://localhost:4000/2016/03/08/introducing-hydejack</id><content type="html" xml:base="http://localhost:4000/2016/03/08/introducing-hydejack/">&lt;p&gt;Unlike Hyde, it’s very opinionated about how you are going to use it.&lt;/p&gt;
-
-&lt;p&gt;Features include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled.&lt;/li&gt;
-  &lt;li&gt;Github Pages compatible tag support based on &lt;a href=&quot;http://www.minddust.com/post/tags-and-categories-on-github-pages/&quot;&gt;this post&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Customizable link color and sidebar image, per-site, per-tag and per-post.&lt;/li&gt;
-  &lt;li&gt;Optional author section at the bottom of each post.&lt;/li&gt;
-  &lt;li&gt;Optional comment section powered by Disqus.&lt;/li&gt;
-  &lt;li&gt;Layout for posts grouped by year&lt;/li&gt;
-  &lt;li&gt;Wide array of social media icons on sidebar.&lt;/li&gt;
-  &lt;li&gt;Math blocks via &lt;a href=&quot;https://khan.github.io/KaTeX/&quot;&gt;KaTeX&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is outdated and only included for legacy reasons.
-See the &lt;a href=&quot;/docs/7.5.2/&quot; class=&quot;heading flip-title&quot;&gt;Documentation&lt;/a&gt; for up-to-date instructions.&lt;/p&gt;
-
-&lt;h2 id=&quot;download&quot;&gt;Download&lt;/h2&gt;
-&lt;p&gt;Hydejack is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/qwtel/hydejack&quot;&gt;GitHub repository&lt;/a&gt;
-for downloads, bug reports, and feature requests.&lt;/p&gt;
-
-&lt;h2 id=&quot;sidebar&quot;&gt;Sidebar&lt;/h2&gt;
-&lt;p&gt;I love the original Hyde theme, but unfortunately the layout isn’t as great on small screens.
-Since the sidebar moves to the top, the user has to scroll down just to read the title of a blog post.&lt;/p&gt;
-
-&lt;p&gt;By using a drawer component I was able to retain the original two column layout.
-It’s possible to move the drawer via touch input (with the help of a little JavaScript).&lt;/p&gt;
-
-&lt;p&gt;Since the background image contributes to the feel of the page I’m letting it peek over the edge a bit.
-This also provides a hint to the user that an interaction is possible.&lt;/p&gt;
-
-&lt;h2 id=&quot;manual&quot;&gt;Manual&lt;/h2&gt;
-
-&lt;h3 id=&quot;configuration&quot;&gt;Configuration&lt;/h3&gt;
-&lt;p&gt;You can configure important aspects of the theme via
-&lt;a href=&quot;https://github.com/qwtel/hydejack/blob/v3/_config.yml&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/a&gt;.
-This includes:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;the blog description in the sidebar&lt;/li&gt;
-  &lt;li&gt;the (optional) author description and photo&lt;/li&gt;
-  &lt;li&gt;default image and link color of the blog&lt;/li&gt;
-  &lt;li&gt;the github and twitter usernames&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;how-to-change-the-image-and-color-of-a-post&quot;&gt;How to Change the Image and Color of a Post&lt;/h3&gt;
-&lt;p&gt;In the manifest of a blog post, simply add an url as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt; and a CSS color as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;color&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Introducing Hydejack&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://qwtel.com/hydejack/assets/img/hyde.jpg&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;#949667'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;how-to-add-a-new-tag&quot;&gt;How to Add a New Tag&lt;/h3&gt;
-&lt;p&gt;Tags are not meant to be used #instagram #style: #food #goodfood #happy #happylife #didimentionfood #yougetthepoint,
-as each tag requires some setup work. I tend to think of it as categories that can be combined.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Add an entry to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/tags.yml&lt;/code&gt;, where the key represents a slug and provide at least a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;name&lt;/code&gt; value and
-optionally &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;color&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;description&lt;/code&gt;.&lt;/p&gt;
-
-    &lt;p&gt;Example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/_data/tags.yml&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;My Tag&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make a new file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag&lt;/code&gt; folder, using the same name you’ve used as the key / slug and
-change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;permalink&lt;/code&gt; entries.&lt;/p&gt;
-
-    &lt;p&gt;Example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tag/mytag.md&lt;/code&gt;:&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;blog-by-tag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;mytag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;permalink&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tag/mytag/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Tag your blog posts using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt; key (color and image will only depend on the first tag).&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;post&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Introducing My New Tag&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;othertag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(optional) Add the tag to the sidebar, by adding it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar_tags&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.
-They will appear in the listed order.&lt;/p&gt;
-
-    &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;sidebar_tags&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;mytag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;othertag&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">Unlike Hyde, it’s very opinionated about how you are going to use it. Features include: Touch-enabled sidebar / drawer for mobile, including fallback when JS is disabled. Github Pages compatible tag support based on this post. Customizable link color and sidebar image, per-site, per-tag and per-post. Optional author section at the bottom of each post. Optional comment section powered by Disqus. Layout for posts grouped by year Wide array of social media icons on sidebar. Math blocks via KaTeX.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;Social Media Impocalypse&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">Structure of _config.yml has changed Social media usernames are now located under author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;. disqus is now a top-level entry (moved from author). Now has font, font_accent and google_fonts fields that are mandatory. Now defaults to the blog layout, old style is available via blog-by-tag layout, see archive.html.</summary></entry></feed>

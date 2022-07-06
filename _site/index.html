@@ -190,6 +190,85 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
   
 
 
+<article id="post-2022-07-06-【论文笔记】Batch Normalization" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" class="flip-title">
+        【论文笔记】Batch Normalization
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-06T00:00:00+08:00">06 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论文笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      Sergey等人提出的批归一化方法很好地平衡了初始化时的方差，并加快了训练速度，一定程度上也能够解决梯度消失问题。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>论文原文链接：<a href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a></p>
+
+<p>这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。</p>
+
+<blockquote>
+  <p>一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。</p>
+</blockquote>
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">【论文笔记】Batch Normalization</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
 <article id="post-2022-07-05-【论文笔记】ResNet：残差网络" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -227,7 +306,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 
 
-
+on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论文笔记</a>
 
     </p>
 
@@ -235,7 +314,12 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 
 
-  <div class="hr pb0"></div>
+  
+    <p class="message" >
+      何凯明等人提出的Residual Network在2015年的ImageNet挑战赛上大放异彩。只是一个简单的网络构建技巧竟能达到如此优秀的效果。
+
+    </p>
+  
 
 
   </header>
@@ -277,7 +361,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 <p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w3vaw6q7j30g108fac8.jpg" alt="image.png" style="zoom:50%;" /></p>
 
-<p>即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，有两种解决方法：</p>
+<p>即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法：</p>
 
 <ol>
   <li>对加上的$x$进行投影操作</li>
@@ -294,8 +378,34 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 <p>首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。</p>
 
+<h3 id="测试">测试</h3>
+
+<p>作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。</p>
+
+<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzbx1xxfj316i0dkdon.jpg" alt="image.png" style="zoom:50%;" /></p>
+
+<h4 id="shortcuts-的影响">Shortcuts 的影响</h4>
+
+<p>记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试：</p>
+
+<p>A. 零扩充</p>
+
+<p>B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射</p>
+
+<p>C. 对整个shortcut做投影映射</p>
+
+<p>测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。</p>
+
+<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzgqaracj30n60h3wni.jpg" alt="image.png" style="zoom:50%;" /></p>
+
+<p>最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。</p>
+
+<h3 id="感想">感想</h3>
+
+<p>读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？</p>
+
 <blockquote>
-  <p>后续需要精通：Batch Normalization</p>
+  <p>读完后续需要精通：Batch Normalization</p>
 </blockquote>
 
     
@@ -534,82 +644,6 @@ without setting up a <code class="language-plaintext highlighter-rouge">_data</c
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/2017/07/27/better-gem-support/">Better Gem Support (v6.5)</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-<article id="post-2017-06-21-related-projects-and-data-tables" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2017/06/21/related-projects-and-data-tables/" class="flip-title">
-        Related Projects and Data Tables (v6.4)
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2017-06-21T00:00:00+08:00">21 Jun 2017</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/hydejack/" class="flip-title">Hydejack</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      In Hydejack v6.4 I’ve added a “Other Projects” section to the bottom of each project page, making it easier for users to navigate through your collection and discover other projects.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>In this release I’ve added a “Other Projects” section to the bottom of each project page,
-making it easier for users to navigate through your collection and discover other projects.
-Also, it’s now possible to display larger (data-) tables that were previously cut off (especially on mobile devices).</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2017/06/21/related-projects-and-data-tables/">Related Projects and Data Tables (v6.4)</a>
 
       </p>
     </footer>
