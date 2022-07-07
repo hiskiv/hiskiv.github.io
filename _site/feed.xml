@@ -1,7 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-06T14:54:11+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
-</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">【论文笔记】Batch Normalization</title><link href="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" rel="alternate" type="text/html" title="【论文笔记】Batch Normalization" /><published>2022-07-06T00:00:00+08:00</published><updated>2022-07-06T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/06/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91Batch%20Normalization</id><content type="html" xml:base="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">&lt;p&gt;论文原文链接：&lt;a href=&quot;https://arxiv.org/abs/1502.03167&quot;&gt;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-07T13:43:56+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">【论文笔记】DenseNet</title><link href="http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" rel="alternate" type="text/html" title="【论文笔记】DenseNet" /><published>2022-07-07T00:00:00+08:00</published><updated>2022-07-07T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/07/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91DenseNet</id><content type="html" xml:base="http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/">&lt;p&gt;论文原文链接：&lt;a href=&quot;https://openaccess.thecvf.com/content_cvpr_2017/html/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.html&quot;&gt;Densely Connected Convolutional Networks&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这两天在读ResNet，赶紧趁热打铁读一读接下来2017年提出的DenseNet。DenseNet受了ResNet的很多启发，但本质其实与ResNet有不小的差异。并且，DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;problem&quot;&gt;Problem&lt;/h3&gt;
+
+&lt;p&gt;随着CNN网络层数逐渐的增加，人们发现存在degradation问题，同时网络前端的信息在传送过程中到最后很可能渐渐被磨损了。ResNet是采用了在每个残差块前后利用shortcuts连接，使得梯度能够直接流回；而FractalNetwork（没读过）则采用将数个并行层合并的方式。这些网络都在深度慢慢增大时取得了很好的效果，它们之间有一个共性，即使用shortcuts使前面层的信息能直接传递给后面的部分。&lt;/p&gt;
+
+&lt;p&gt;DenseNet则将这一特征发挥到了极致，它令每一层的输出feature maps连接到后面所有层的输入上，如下图所示。这与ResNet最不同的一点在于，ResNet本质上还是遵循传统架构的方式，每一层的输出是前面所有层的一个summation，而DenseNet直接将前面所有层的feature maps拼接在一起。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3y7dalwdej30nr0jwai3.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; align=&quot;center&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;作者证明，使用DenseNet能够在取得与ResNet相近效果的同时大大减少参数的数量。&lt;/p&gt;
+
+&lt;h3 id=&quot;densenet&quot;&gt;DenseNet&lt;/h3&gt;
+
+&lt;h4 id=&quot;主体架构&quot;&gt;主体架构&lt;/h4&gt;
+
+&lt;p&gt;设一个模型中，第$\mathcal{l}$层的非线性变换为$H_{l}(·)$，第$l$层的输入为$x_{l-1}$，输出为$x_{l}$。&lt;/p&gt;
+
+&lt;p&gt;传统的网络每一层的变换形如：$x_l = H_{l}(x_{l-1})$，&lt;/p&gt;
+
+&lt;p&gt;ResNet每一层（块）的变换形如：$x_l = H_{l}(x_{l-1})+x_{l-1}$，&lt;/p&gt;
+
+&lt;p&gt;而DenseNet则形如：$x_l=H_l([x_0,x_1, \dots,x_{l-1}])$。其中中括号括起的部分为张量拼接，具体而言，&lt;strong&gt;这里的拼接是在通道的维度上进行的&lt;/strong&gt;。在实际中该$H_l(·)$变换往往由BN层、ReLU与卷积运算构成。一个Dense Block由数个这样的变换构成，而不同Dense Block之间通过transition layers连接，这些层由卷积与池化运算构成。&lt;/p&gt;
+
+&lt;p&gt;在一个Dense Block中，每一层输出的feature maps个数是一致的，作者称其为“增长率”(Growth Rate)。可以知道，第$l$层共有$k_0+k\times(l-1)$个feature maps输入，其中$k_0$为Dense Block输入层的通道数。&lt;/p&gt;
+
+&lt;p&gt;我们可以&lt;strong&gt;把每层所产生的feature maps看做整个Dense Block的一个全局状态表示&lt;/strong&gt;，因为他们一旦产生，后面所有的层都能够访问到。因此Growth Rate即控制每层能对全局状态贡献的信息量。这一思想可以算作是DenseNet的核心。&lt;/p&gt;
+
+&lt;h4 id=&quot;bottleneck层&quot;&gt;Bottleneck层&lt;/h4&gt;
+
+&lt;p&gt;为了提高运算效率，对于$H_l(·)$作者引进了bottleneck层，即1×1的卷积层。在每一层，输入有$k_0+k\times(l-1)$个feature maps，在本文中作者通过bottleneck层，将其约化为$4k$个feature maps，从而减少运算量。&lt;/p&gt;
+
+&lt;h4 id=&quot;compression&quot;&gt;Compression&lt;/h4&gt;
+
+&lt;p&gt;作者为了提高模型的compactness（这个术语具体指什么？没有特别弄明白），对出于transition layer的卷积层filter深度进行限制。即对于输入transition layer的$m$通道feature maps，输出通道数控制到$\lfloor\theta m\rfloor$，其中$0\lt\theta \le1$为压缩比。&lt;/p&gt;
+
+&lt;h3 id=&quot;为什么densenet能减少参数数量&quot;&gt;为什么DenseNet能减少参数数量&lt;/h3&gt;
+
+&lt;p&gt;作者原文如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DenseNet layers are very narrow (e.g., 12 filters per layer), adding only a small set of feature-maps to the “collective knowledge” of the network and keep the remaining featuremaps unchanged—and the final classifier makes a decision based on all feature-maps in the network&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;可见，最主要的提升在于DenseNet中每个卷积层的filter深度（即Growth rate）可以比较小。因为DenseNet每一层产生的所有feature maps均可视为整个模型的全局数据，这些数据全部参与了最终输出的决策。Growth rate小，因此参数总量也随之降低。&lt;/p&gt;
+
+&lt;h3 id=&quot;总结&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;就我个人读完的理解来说，DenseNet最核心的地方在于它充分利用了每一层得到的feature maps，将它们作为一种全局信息来使用，这对于较深的网络能够保持充分的信息。这一思想其实在ResNet中就已经得到利用，但ResNet的作者并没有从这个点进行思考，而DenseNet则是将这一点做到了极致。同时，因为是利用全局信息进行最终判断，因此每一卷积层需要的filter深度可以适当减少（为什么这样是优的其实还需要一些斟酌）。这样便达到了减少参数数量的目的。&lt;/p&gt;
+
+&lt;p&gt;这篇文章写得很详尽，作者的解释也很到位。后面的Training与Discussion部分感觉挺有意思，先挖个坑，后面有时间再看。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;延伸阅读：显存友好的DenseNet：&lt;a href=&quot;https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1707.06990.pdf&quot;&gt;Memory-efficient implementation of densenets&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;DenseNet为什么是优的&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Densely Connected Convolutional Networks 这两天在读ResNet，赶紧趁热打铁读一读接下来2017年提出的DenseNet。DenseNet受了ResNet的很多启发，但本质其实与ResNet有不小的差异。并且，DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。</summary></entry><entry><title type="html">【论文笔记】Batch Normalization</title><link href="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" rel="alternate" type="text/html" title="【论文笔记】Batch Normalization" /><published>2022-07-06T00:00:00+08:00</published><updated>2022-07-06T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/06/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91Batch%20Normalization</id><content type="html" xml:base="http://localhost:4000/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">&lt;p&gt;论文原文链接：&lt;a href=&quot;https://arxiv.org/abs/1502.03167&quot;&gt;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。&lt;/p&gt;
@@ -23,11 +85,11 @@
 
 &lt;p&gt;早先的研究已经指出，对输入进行白化（whiten）操作能够使网络训练更快地收敛。所谓白化，即对输入进行线性变换，使输入分布的平均值为0，方差为单位值（1），且各变量间是不相关的。&lt;/p&gt;
 
-&lt;p&gt;利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即正则化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。&lt;/p&gt;
+&lt;p&gt;利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即归一化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。&lt;/p&gt;
 
 &lt;h4 id=&quot;正则化层&quot;&gt;正则化层&lt;/h4&gt;
 
-&lt;p&gt;如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，即导致我们上面所说的情况。然而在实际中，要对白化方式计算后一项是极其困难的，因此作者提出了Batch Normalization方法。&lt;/p&gt;
+&lt;p&gt;如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，则导致了我们上面所说的情况，整个模型”blows up“。然而在实际中，要对白化层计算后一项是极其困难的，因此作者提出了Batch Normalization方法。&lt;/p&gt;
 
 &lt;h4 id=&quot;bn层&quot;&gt;BN层&lt;/h4&gt;
 
@@ -35,9 +97,9 @@
 
 &lt;p&gt;&lt;strong&gt;修改1：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;首先，从原先对整个输入向量进行正则化转变为&lt;strong&gt;对输入向量的每一个分量进行正则化&lt;/strong&gt;。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。&lt;/p&gt;
+&lt;p&gt;首先，从原先对整个输入向量进行正则化转变为&lt;strong&gt;对输入向量的每一个分量进行正则化&lt;/strong&gt;。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。这样做的目的是易于反向传播时梯度的计算。&lt;/p&gt;
 
-&lt;p&gt;同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。&lt;/p&gt;
+&lt;p&gt;同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作，直接将输入信息传出。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。&lt;/p&gt;
 
 &lt;p&gt;可见，当$\gamma^{(k)}=\sqrt{Var[x^{(k)}]}$，而$\beta^{(k)}=E[x^{(k)}]$时BN层退化为恒等映射。&lt;/p&gt;
 
@@ -55,9 +117,31 @@
 
 &lt;p&gt;对于上面的BN层变换，作者推导出了其反向传播的公式，如下图所示：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3x7lp8a1aj30lr0bzgqe.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift 这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。 一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。 Introduction 在我们使用随机梯度下降方法（SGD）时，我们会往往面临这样的问题：每一层参数稍微的改变会导致后面整个网络的参数产生问题。也就是，网络每一层的参数需要不断去适应该层输入的分布。若输入的分布发生了一定变化，称作协变量偏移（Covariate shift）。如果能够保证每一层的输入分布维持不变，那么参数学习难度将大大降低。 我们可以将网络的一层稍稍扩展，考虑一个子网络。对于一个子网络，在使用Sigmoid激活函数时易发生梯度消失问题，输入的有些分量容易达到饱和域。我们可以使用ReLU激活函数一定程度上解决该问题；而BN提出了新的解决方案，若能保持在训练过程中非线性激活函数的输入分布稳定不变，我们将减少陷在饱和域的可能，从而加速训练。 对于网络内部节点之间产生的分布变化，我们称之为internal covariate shift。 Towards Batch Normalization 白化 早先的研究已经指出，对输入进行白化（whiten）操作能够使网络训练更快地收敛。所谓白化，即对输入进行线性变换，使输入分布的平均值为0，方差为单位值（1），且各变量间是不相关的。 利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即正则化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。 正则化层 如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，即导致我们上面所说的情况。然而在实际中，要对白化方式计算后一项是极其困难的，因此作者提出了Batch Normalization方法。 BN层 作者首先对原本的白化方法做了两个修改： 修改1： 首先，从原先对整个输入向量进行正则化转变为对输入向量的每一个分量进行正则化。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。 同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。 可见，当$\gamma^{(k)}=\sqrt{Var[x^{(k)}]}$，而$\beta^{(k)}=E[x^{(k)}]$时BN层退化为恒等映射。 修改2： 由于我们通常采用mini-batch的SGD方法，因此我们在对分量进行正则化时，不再费力的对原问题的整个样本集分布求均值与方差，而用该batch中的样本来近似均值与方差。 这样我们得到了Batch Normalization Transform：$BN_{\gamma,\beta}: x_{1…m}\rightarrow y_{1…m}$，其forward pass的算法如下图所示： 注意，这里第2、3步中的平方与开根均为逐分量运算，与前面的修改1是一致的。 训练 对于上面的BN层变换，作者推导出了其反向传播的公式，如下图所示：</summary></entry><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3x7lp8a1aj30lr0bzgqe.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;训练及反向传播过程的算法较为复杂，此处不做详细介绍。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;一个要点补充：训练时与推理时用的均值计算方法不尽相同，有精力了再看！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;最后，对于卷积层，我们往往先固定通道，将通道这一维作为正则化的维度，对每个通道中所有位置，在整个批量中进行正则化（固定通道后的所有数据作为一个mini-batch，如下图蓝色部分所示）。对每个通道分别进行该操作，因此共需要与通道数相等数目的参数$\gamma$与$\beta$。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3x9ezfvlcj30dq0dx0wa.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;总结&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;作者提出Batch Normalization主要是为了解决神经网络中各层输入可能出现的covariate shift问题。在引入了BN层之后，发现它能很有效地加快模型的收敛，同时还能有效解决梯度消失问题。&lt;/p&gt;
+
+&lt;p&gt;先前的白化层无法将正则化在梯度下降过程中体现出来，BN层对其进行了两处改进，即对各分量正则化以及在小批量中近似均值方差，前者方便反向传播时计算梯度，后者大大减少了运算量。当然，个人认为BN层最厉害的一点还是在于提出了分量的线性变换参数$\gamma$与$\beta$，这样BN层还可以一定程度上保持原有的数据表示。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;延伸阅读：Group Normalization, Layer Normalization&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift 这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。</summary></entry><entry><title type="html">【论文笔记】ResNet：残差网络</title><link href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" rel="alternate" type="text/html" title="【论文笔记】ResNet：残差网络" /><published>2022-07-05T00:00:00+08:00</published><updated>2022-07-05T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/05/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91ResNet:%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C</id><content type="html" xml:base="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/">&lt;p&gt;论文原文链接：&lt;a href=&quot;http://arxiv.org/abs/1512.03385&quot;&gt;Deep Residual Learning for Image Recognition&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;h3 id=&quot;从一个问题说起&quot;&gt;从一个问题说起&lt;/h3&gt;
 
@@ -87,7 +171,7 @@
 
 &lt;h4 id=&quot;残差块&quot;&gt;残差块&lt;/h4&gt;
 
-&lt;p&gt;作者提出的一个基本残差块的结果如下图所示：&lt;/p&gt;
+&lt;p&gt;作者提出的一个基本残差块的结构如下图所示：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h3w3vaw6q7j30g108fac8.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
 
@@ -136,7 +220,7 @@
 
 &lt;blockquote&gt;
   &lt;p&gt;读完后续需要精通：Batch Normalization&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Deep Residual Learning for Image Recognition 自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。 从一个问题说起 增加网络的层数（深度）一定可以提高模型的泛化能力吗？ 对于早期最普通的全连接网络而言，往往使用Sigmoid函数作为激活函数，由于Sigmoid函数在稍微大一点的位置梯度便趋近为0，因此在一个很深的网络中极有可能导致某个神经元的梯度退化到0，使得反向传播后面的梯度均被限制住，即所谓梯度消失问题。通过使用ReLU激活函数以及加入批归一化层(Batch Normalization)后，梯度消失问题基本能够解决，模型能够保证收敛。 但在继续增大网络层数时，人们发现，错误率不降反升。如下图，我们发现不论是在训练集还是测试集上，在增加层数后误差均升高。由此可知该现象不是因过拟合产生的（否则训练集误差应更低）。在论文中将该现象成为degradation。 疑问：产生该现象的理论依据是什么？ Degradation现象的存在说明并非所有问题都能够简单地通过普通网络模型来进行拟合。但我们至少能够人为地构造一个网络，使得较深模型得到的结果并不比层数较浅的模型来得差。构造方法颇为直接：我们可以在浅层模型的基础上，在后面加上更深的层，并调整新加入层的权重，使其成为单位映射。这个构造便是Residual概念一个最核心的intuition。 Residual Learning 残差映射 在上面，我们构造了一个单位映射，然而大多数模型中神经元采用的都是非线性层（如Sigmoid，ReLU等）。利用非线性层去拟合一个线性（单位）映射往往效果并不佳。 本论文创造性地提出了Residual Learning：设目标拟合函数为$\mathcal{H}(x)$，我们学习的非线性层参数用于拟合函数$\mathcal{F}(x)=\mathcal{H}(x)-x$。作者发现，最优化该残差函数比直接优化原函数更容易（深层次原因可能得等下学期学了优化理论之后才能理解）。在极端情况下，$\mathcal{H}(x)=x$，此时直接将参数函数$\mathcal{F}(x)$拟合至0比直接拟合原函数到恒等映射的难度显然更简单一些。 这里突然想到，如果目标函数$\mathcal{H}(x)=0$，或$\mathcal{H}(x)=2x$，那么残差函数可能并没有更优。但作者也在文中提到，当目标函数比起零映射更接近恒等映射时，这个优化能够提供一个好的预处理效果。 残差块 作者提出的一个基本残差块的结果如下图所示： 即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法： 对加上的$x$进行投影操作 对加上的$x$，在多出的分量上补零 在上图所示的残差块中，残差函数包括两个全连接层。事实上两个以上全连接层均可以尝试，但是只有一个全连接层时该残差块就退化为$y=\sigma(W_1 x + x)$的形式，与原本普通层并无差异。此外，残差块还可以应用到卷积层上。 网络结构 作者提出的ResNet网络结构如下图： 首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。 测试 作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。 Shortcuts 的影响 记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试： A. 零扩充 B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射 C. 对整个shortcut做投影映射 测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。 最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。 感想 读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？ 读完后续需要精通：Batch Normalization</summary></entry><entry><title type="html">Example content</title><link href="http://localhost:4000/2017/11/22/example-content/" rel="alternate" type="text/html" title="Example content" /><published>2017-11-22T00:00:00+08:00</published><updated>2017-11-22T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/22/example-content</id><content type="html" xml:base="http://localhost:4000/2017/11/22/example-content/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="论文笔记" /><summary type="html">论文原文链接：Deep Residual Learning for Image Recognition 自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。</summary></entry><entry><title type="html">Example content</title><link href="http://localhost:4000/2017/11/22/example-content/" rel="alternate" type="text/html" title="Example content" /><published>2017-11-22T00:00:00+08:00</published><updated>2017-11-22T00:00:00+08:00</updated><id>http://localhost:4000/2017/11/22/example-content</id><content type="html" xml:base="http://localhost:4000/2017/11/22/example-content/">&lt;p&gt;Text can be &lt;strong&gt;bold&lt;/strong&gt;, &lt;em&gt;italic&lt;/em&gt;, or &lt;del&gt;strikethrough&lt;/del&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;another-page&quot;&gt;Link to another page&lt;/a&gt;.&lt;/p&gt;
 
@@ -1212,46 +1296,4 @@ help with loading speed as well (burred images get compressed by JPG much better
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;The Fast One&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">This major release increases page load speed dramatically. The page now scores roughly 90/100 on Google’s PageSpeed Insights (up from ~50) and has a high score on similar tools.</summary></entry><entry><title type="html">Breaking</title><link href="http://localhost:4000/2016/08/30/social-media-impocalypse/" rel="alternate" type="text/html" title="Breaking" /><published>2016-08-30T00:00:00+08:00</published><updated>2016-08-30T00:00:00+08:00</updated><id>http://localhost:4000/2016/08/30/social-media-impocalypse</id><content type="html" xml:base="http://localhost:4000/2016/08/30/social-media-impocalypse/">&lt;ul&gt;
-  &lt;li&gt;Structure of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; has changed
-    &lt;ul&gt;
-      &lt;li&gt;Social media usernames are now located under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;&lt;/code&gt;.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;disqus&lt;/code&gt; is now a top-level entry (moved from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;author&lt;/code&gt;).&lt;/li&gt;
-      &lt;li&gt;Now has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;font&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;font_accent&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google_fonts&lt;/code&gt; fields that are mandatory.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Now defaults to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout, old style is available via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog-by-tag&lt;/code&gt; layout, see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;archive.html&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!--more--&gt;
-
-&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is outdated and only included for legacy reasons.
-See the &lt;a href=&quot;/docs/7.5.2/&quot; class=&quot;heading flip-title&quot;&gt;Documentation&lt;/a&gt; for up-to-date instructions.&lt;/p&gt;
-
-&lt;h2 id=&quot;new-features&quot;&gt;New features&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Added &lt;em&gt;a lot&lt;/em&gt; of social media icons, configurable via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;New &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;blog&lt;/code&gt; layout. Classic, paginated.&lt;/li&gt;
-  &lt;li&gt;Fonts are configurable via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Link underlines are now fixed-sized for all font sizes (no thicker lines for headlines, etc)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;fixes&quot;&gt;Fixes&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Correctly set the meta description field using either the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;description&lt;/code&gt; field or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.excerpt&lt;/code&gt; as a fallback (used
-to contain the unmodified markdown).&lt;/li&gt;
-  &lt;li&gt;Fixed various URL bugs relating to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site.baseurl&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;internal&quot;&gt;Internal&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Refactoring, preventing code duplications, heavier usage of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;includes&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;Social Media Impocalypse&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">Structure of _config.yml has changed Social media usernames are now located under author: social: &amp;lt;platform&amp;gt;: &amp;lt;username&amp;gt;. disqus is now a top-level entry (moved from author). Now has font, font_accent and google_fonts fields that are mandatory. Now defaults to the blog layout, old style is available via blog-by-tag layout, see archive.html.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://github.com/qwtel/hydejack/releases&quot;&gt;Get &lt;em&gt;The Fast One&lt;/em&gt; on GitHub&lt;/a&gt;&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="hydejack" /><summary type="html">This major release increases page load speed dramatically. The page now scores roughly 90/100 on Google’s PageSpeed Insights (up from ~50) and has a high score on similar tools.</summary></entry></feed>

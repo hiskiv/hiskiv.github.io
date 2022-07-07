@@ -24,22 +24,22 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
   
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>【论文笔记】ResNet：残差网络 | Hiskiii</title>
+<title>【论文笔记】DenseNet | Hiskiii</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="【论文笔记】ResNet：残差网络" />
+<meta property="og:title" content="【论文笔记】DenseNet" />
 <meta name="author" content="Hiski" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="何凯明等人提出的Residual Network在2015年的ImageNet挑战赛上大放异彩。只是一个简单的网络构建技巧竟能达到如此优秀的效果。" />
-<meta property="og:description" content="何凯明等人提出的Residual Network在2015年的ImageNet挑战赛上大放异彩。只是一个简单的网络构建技巧竟能达到如此优秀的效果。" />
-<link rel="canonical" href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" />
-<meta property="og:url" content="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" />
+<meta name="description" content="DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。" />
+<meta property="og:description" content="DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。" />
+<link rel="canonical" href="http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" />
+<meta property="og:url" content="http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" />
 <meta property="og:site_name" content="Hiskiii" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-07-05T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-07-07T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="【论文笔记】ResNet：残差网络" />
+<meta property="twitter:title" content="【论文笔记】DenseNet" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-05T00:00:00+08:00","datePublished":"2022-07-05T00:00:00+08:00","description":"何凯明等人提出的Residual Network在2015年的ImageNet挑战赛上大放异彩。只是一个简单的网络构建技巧竟能达到如此优秀的效果。","headline":"【论文笔记】ResNet：残差网络","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-07T00:00:00+08:00","datePublished":"2022-07-07T00:00:00+08:00","description":"DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。","headline":"【论文笔记】DenseNet","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -69,7 +69,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 
 
-<link rel="alternate" href="http://localhost:4000/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" hreflang="en">
+<link rel="alternate" href="http://localhost:4000/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" hreflang="en">
 
 <link rel="shortcut icon" href="/assets/icons/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/icons/icon.png">
@@ -187,17 +187,17 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
     
 
 
-<article id="post-2022-07-05-【论文笔记】ResNet：残差网络" class="page post" role="article">
+<article id="post-2022-07-07-【论文笔记】DenseNet" class="page post" role="article">
   <header>
     <h1 class="post-title">
       
-        【论文笔记】ResNet：残差网络
+        【论文笔记】DenseNet
       
     </h1>
 
     <p class="post-date heading">
       
-      <time datetime="2022-07-05T00:00:00+08:00">05 Jul 2022</time>
+      <time datetime="2022-07-07T00:00:00+08:00">07 Jul 2022</time>
       
       
       
@@ -234,7 +234,7 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 
   
     <p class="message" >
-      何凯明等人提出的Residual Network在2015年的ImageNet挑战赛上大放异彩。只是一个简单的网络构建技巧竟能达到如此优秀的效果。
+      DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。
 
     </p>
   
@@ -243,89 +243,66 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
   </header>
 
   
-    <p>论文原文链接：<a href="http://arxiv.org/abs/1512.03385">Deep Residual Learning for Image Recognition</a></p>
+    <p>论文原文链接：<a href="https://openaccess.thecvf.com/content_cvpr_2017/html/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.html">Densely Connected Convolutional Networks</a></p>
 
-<p>自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。</p>
+<p>这两天在读ResNet，赶紧趁热打铁读一读接下来2017年提出的DenseNet。DenseNet受了ResNet的很多启发，但本质其实与ResNet有不小的差异。并且，DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。</p>
 
 <!--more-->
 
-<h3 id="从一个问题说起">从一个问题说起</h3>
+<h3 id="problem">Problem</h3>
 
-<p>增加网络的层数（深度）一定可以提高模型的泛化能力吗？</p>
+<p>随着CNN网络层数逐渐的增加，人们发现存在degradation问题，同时网络前端的信息在传送过程中到最后很可能渐渐被磨损了。ResNet是采用了在每个残差块前后利用shortcuts连接，使得梯度能够直接流回；而FractalNetwork（没读过）则采用将数个并行层合并的方式。这些网络都在深度慢慢增大时取得了很好的效果，它们之间有一个共性，即使用shortcuts使前面层的信息能直接传递给后面的部分。</p>
 
-<p>对于早期最普通的全连接网络而言，往往使用Sigmoid函数作为激活函数，由于Sigmoid函数在稍微大一点的位置梯度便趋近为0，因此在一个很深的网络中极有可能导致某个神经元的梯度退化到0，使得反向传播后面的梯度均被限制住，即所谓梯度消失问题。通过使用ReLU激活函数以及加入批归一化层(Batch Normalization)后，梯度消失问题基本能够解决，模型能够保证收敛。</p>
+<p>DenseNet则将这一特征发挥到了极致，它令每一层的输出feature maps连接到后面所有层的输入上，如下图所示。这与ResNet最不同的一点在于，ResNet本质上还是遵循传统架构的方式，每一层的输出是前面所有层的一个summation，而DenseNet直接将前面所有层的feature maps拼接在一起。</p>
 
-<p>但在继续增大网络层数时，人们发现，错误率不降反升。如下图，我们发现不论是在训练集还是测试集上，在增加层数后误差均升高。由此可知该现象不是因过拟合产生的（否则训练集误差应更低）。在论文中将该现象成为<code class="language-plaintext highlighter-rouge">degradation</code>。</p>
+<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3y7dalwdej30nr0jwai3.jpg" alt="image.png" style="zoom:50%;" align="center" /></p>
+
+<p>作者证明，使用DenseNet能够在取得与ResNet相近效果的同时大大减少参数的数量。</p>
+
+<h3 id="densenet">DenseNet</h3>
+
+<h4 id="主体架构">主体架构</h4>
+
+<p>设一个模型中，第$\mathcal{l}$层的非线性变换为$H_{l}(·)$，第$l$层的输入为$x_{l-1}$，输出为$x_{l}$。</p>
+
+<p>传统的网络每一层的变换形如：$x_l = H_{l}(x_{l-1})$，</p>
+
+<p>ResNet每一层（块）的变换形如：$x_l = H_{l}(x_{l-1})+x_{l-1}$，</p>
+
+<p>而DenseNet则形如：$x_l=H_l([x_0,x_1, \dots,x_{l-1}])$。其中中括号括起的部分为张量拼接，具体而言，<strong>这里的拼接是在通道的维度上进行的</strong>。在实际中该$H_l(·)$变换往往由BN层、ReLU与卷积运算构成。一个Dense Block由数个这样的变换构成，而不同Dense Block之间通过transition layers连接，这些层由卷积与池化运算构成。</p>
+
+<p>在一个Dense Block中，每一层输出的feature maps个数是一致的，作者称其为“增长率”(Growth Rate)。可以知道，第$l$层共有$k_0+k\times(l-1)$个feature maps输入，其中$k_0$为Dense Block输入层的通道数。</p>
+
+<p>我们可以<strong>把每层所产生的feature maps看做整个Dense Block的一个全局状态表示</strong>，因为他们一旦产生，后面所有的层都能够访问到。因此Growth Rate即控制每层能对全局状态贡献的信息量。这一思想可以算作是DenseNet的核心。</p>
+
+<h4 id="bottleneck层">Bottleneck层</h4>
+
+<p>为了提高运算效率，对于$H_l(·)$作者引进了bottleneck层，即1×1的卷积层。在每一层，输入有$k_0+k\times(l-1)$个feature maps，在本文中作者通过bottleneck层，将其约化为$4k$个feature maps，从而减少运算量。</p>
+
+<h4 id="compression">Compression</h4>
+
+<p>作者为了提高模型的compactness（这个术语具体指什么？没有特别弄明白），对出于transition layer的卷积层filter深度进行限制。即对于输入transition layer的$m$通道feature maps，输出通道数控制到$\lfloor\theta m\rfloor$，其中$0\lt\theta \le1$为压缩比。</p>
+
+<h3 id="为什么densenet能减少参数数量">为什么DenseNet能减少参数数量</h3>
+
+<p>作者原文如下：</p>
 
 <blockquote>
-  <p>疑问：产生该现象的理论依据是什么？</p>
+  <p>DenseNet layers are very narrow (e.g., 12 filters per layer), adding only a small set of feature-maps to the “collective knowledge” of the network and keep the remaining featuremaps unchanged—and the final classifier makes a decision based on all feature-maps in the network</p>
 </blockquote>
 
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w2zvwkcpj30nr0cbn4c.jpg" alt="image.png" style="zoom:45%;" /></p>
+<p>可见，最主要的提升在于DenseNet中每个卷积层的filter深度（即Growth rate）可以比较小。因为DenseNet每一层产生的所有feature maps均可视为整个模型的全局数据，这些数据全部参与了最终输出的决策。Growth rate小，因此参数总量也随之降低。</p>
 
-<p>Degradation现象的存在说明并非所有问题都能够简单地通过普通网络模型来进行拟合。但我们至少能够人为地构造一个网络，使得较深模型得到的结果并不比层数较浅的模型来得差。构造方法颇为直接：我们可以在浅层模型的基础上，在后面加上更深的层，并调整新加入层的权重，使其成为单位映射。这个构造便是Residual概念一个最核心的intuition。</p>
+<h3 id="总结">总结</h3>
 
-<h3 id="residual-learning">Residual Learning</h3>
+<p>就我个人读完的理解来说，DenseNet最核心的地方在于它充分利用了每一层得到的feature maps，将它们作为一种全局信息来使用，这对于较深的网络能够保持充分的信息。这一思想其实在ResNet中就已经得到利用，但ResNet的作者并没有从这个点进行思考，而DenseNet则是将这一点做到了极致。同时，因为是利用全局信息进行最终判断，因此每一卷积层需要的filter深度可以适当减少（为什么这样是优的其实还需要一些斟酌）。这样便达到了减少参数数量的目的。</p>
 
-<h4 id="残差映射">残差映射</h4>
-
-<p>在上面，我们构造了一个单位映射，然而大多数模型中神经元采用的都是非线性层（如Sigmoid，ReLU等）。利用非线性层去拟合一个线性（单位）映射往往效果并不佳。</p>
-
-<p>本论文创造性地提出了Residual Learning：设目标拟合函数为$\mathcal{H}(x)$，我们学习的非线性层参数用于拟合函数$\mathcal{F}(x)=\mathcal{H}(x)-x$。作者发现，最优化该残差函数比直接优化原函数更容易（深层次原因可能得等下学期学了优化理论之后才能理解）。在极端情况下，$\mathcal{H}(x)=x$，此时直接将参数函数$\mathcal{F}(x)$拟合至0比直接拟合原函数到恒等映射的难度显然更简单一些。</p>
-
-<p>这里突然想到，如果目标函数$\mathcal{H}(x)=0$，或$\mathcal{H}(x)=2x$，那么残差函数可能并没有更优。但作者也在文中提到，当目标函数比起零映射更接近恒等映射时，这个优化能够提供一个好的预处理效果。</p>
-
-<h4 id="残差块">残差块</h4>
-
-<p>作者提出的一个基本残差块的结构如下图所示：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w3vaw6q7j30g108fac8.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法：</p>
-
-<ol>
-  <li>对加上的$x$进行投影操作</li>
-  <li>对加上的$x$，在多出的分量上补零</li>
-</ol>
-
-<p>在上图所示的残差块中，残差函数包括两个全连接层。事实上两个以上全连接层均可以尝试，但是只有一个全连接层时该残差块就退化为$y=\sigma(W_1 x + x)$的形式，与原本普通层并无差异。此外，残差块还可以应用到卷积层上。</p>
-
-<h4 id="网络结构">网络结构</h4>
-
-<p>作者提出的ResNet网络结构如下图：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w4lorgqcj30nq0tpwpm.jpg" alt="image.png" style="zoom:45%;" /></p>
-
-<p>首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。</p>
-
-<h3 id="测试">测试</h3>
-
-<p>作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzbx1xxfj316i0dkdon.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<h4 id="shortcuts-的影响">Shortcuts 的影响</h4>
-
-<p>记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试：</p>
-
-<p>A. 零扩充</p>
-
-<p>B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射</p>
-
-<p>C. 对整个shortcut做投影映射</p>
-
-<p>测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzgqaracj30n60h3wni.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。</p>
-
-<h3 id="感想">感想</h3>
-
-<p>读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？</p>
+<p>这篇文章写得很详尽，作者的解释也很到位。后面的Training与Discussion部分感觉挺有意思，先挖个坑，后面有时间再看。</p>
 
 <blockquote>
-  <p>读完后续需要精通：Batch Normalization</p>
+  <p>延伸阅读：显存友好的DenseNet：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1707.06990.pdf">Memory-efficient implementation of densenets</a></p>
+
+  <p>DenseNet为什么是优的</p>
 </blockquote>
 
   
@@ -456,10 +433,10 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 
 
 <li>
-  <a href="/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" class="h4 flip-title">
-    <span>【论文笔记】DenseNet</span>
+  <a href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" class="h4 flip-title">
+    <span>【论文笔记】Batch Normalization</span>
   </a>
-  <time class="heading faded fine" datetime="2022-07-07T00:00:00+08:00">07 Jul 2022</time>
+  <time class="heading faded fine" datetime="2022-07-06T00:00:00+08:00">06 Jul 2022</time>
 </li>
 
     
@@ -467,10 +444,10 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 
 
 <li>
-  <a href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" class="h4 flip-title">
-    <span>【论文笔记】Batch Normalization</span>
+  <a href="/2022/07/05/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-ResNet-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C/" class="h4 flip-title">
+    <span>【论文笔记】ResNet：残差网络</span>
   </a>
-  <time class="heading faded fine" datetime="2022-07-06T00:00:00+08:00">06 Jul 2022</time>
+  <time class="heading faded fine" datetime="2022-07-05T00:00:00+08:00">05 Jul 2022</time>
 </li>
 
     

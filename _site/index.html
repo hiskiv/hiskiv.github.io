@@ -190,6 +190,82 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
   
 
 
+<article id="post-2022-07-07-【论文笔记】DenseNet" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/" class="flip-title">
+        【论文笔记】DenseNet
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-07T00:00:00+08:00">07 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论文笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <p>论文原文链接：<a href="https://openaccess.thecvf.com/content_cvpr_2017/html/Huang_Densely_Connected_Convolutional_CVPR_2017_paper.html">Densely Connected Convolutional Networks</a></p>
+
+<p>这两天在读ResNet，赶紧趁热打铁读一读接下来2017年提出的DenseNet。DenseNet受了ResNet的很多启发，但本质其实与ResNet有不小的差异。并且，DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/">【论文笔记】DenseNet</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
 <article id="post-2022-07-06-【论文笔记】Batch Normalization" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -250,59 +326,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 
 <p>这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。</p>
 
-<blockquote>
-  <p>一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。</p>
-</blockquote>
-
-<h3 id="introduction">Introduction</h3>
-
-<p>在我们使用随机梯度下降方法（SGD）时，我们会往往面临这样的问题：每一层参数稍微的改变会导致后面整个网络的参数产生问题。也就是，网络每一层的参数需要不断去适应该层输入的分布。若输入的分布发生了一定变化，称作协变量偏移（Covariate shift）。如果能够保证每一层的输入分布维持不变，那么参数学习难度将大大降低。</p>
-
-<p>我们可以将网络的一层稍稍扩展，考虑一个子网络。对于一个子网络，在使用Sigmoid激活函数时易发生梯度消失问题，输入的有些分量容易达到饱和域。我们可以使用ReLU激活函数一定程度上解决该问题；而BN提出了新的解决方案，若能保持在训练过程中非线性激活函数的输入分布稳定不变，我们将减少陷在饱和域的可能，从而加速训练。</p>
-
-<blockquote>
-  <p>对于网络内部节点之间产生的分布变化，我们称之为<em>internal covariate shift</em>。</p>
-</blockquote>
-
-<h3 id="towards-batch-normalization">Towards Batch Normalization</h3>
-
-<h4 id="白化">白化</h4>
-
-<p>早先的研究已经指出，对输入进行白化（whiten）操作能够使网络训练更快地收敛。所谓白化，即对输入进行线性变换，使输入分布的平均值为0，方差为单位值（1），且各变量间是不相关的。</p>
-
-<p>利用白化的做法是：在神经网络的每一层输出，我们对其进行白化处理（即正则化），将结果的平均值与方差归一化后传入下一层。这种做法的问题在于，梯度下降过程忽略了正则化处理的影响，在训练过程中可能导致网络训练效果非常差。</p>
-
-<h4 id="正则化层">正则化层</h4>
-
-<p>如上面所讨论，我们需要一种正则化方式，使得其能够影响到梯度下降（或反向传播），或其能反映到梯度之中。我们可以将这种正则化视作一个“正则化层”，该层形如$\hat{x}=Norm(x,\mathcal{X})$，其中$x$是单个训练样本输入，而$\mathcal{X}$为整个训练集（或在批量SGD里理解为一个batch中）的所有样本。在反向传播计算梯度时，我们就得计算$\frac{\part Norm(x,\mathcal{X})}{\part x}$与$\frac{\part Norm(x,\mathcal{X})}{\part \mathcal{X}}$。若忽略后者，即导致我们上面所说的情况。然而在实际中，要对白化方式计算后一项是极其困难的，因此作者提出了Batch Normalization方法。</p>
-
-<h4 id="bn层">BN层</h4>
-
-<p>作者首先对原本的白化方法做了两个修改：</p>
-
-<p><strong>修改1：</strong></p>
-
-<p>首先，从原先对整个输入向量进行正则化转变为<strong>对输入向量的每一个分量进行正则化</strong>。设某一层的输入为d维向量$x=(x^{(1)}, x^{(2)},\dots, x^{(d)})$，我们对每一个分量进行正则化：$\hat{x}^{(k)}=\frac{x^{(k)}-E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$。</p>
-
-<p>同时，我们注意到，直接对一层的每个输入进行正则化可能会改变该层能表示的语义内容。因此作者要确保，BN层要有能够表示恒等映射的能力。即，在必要的时候BN层能够不进行任何归一化操作。为了实现这一点，作者创造性地引入了两个参数：对每个分量$x^{(k)}$，设置参数$\gamma^{(k)}$与$\beta^{(k)}$来对分量进行缩放与平移。因此BN层最终的结果即$y^{(k)}=\gamma^{(k)}\hat{x}^{(k)}+\beta^{(k)}$。参数$\gamma^{(k)}$与$\beta^{(k)}$同样是通过梯度下降学习得到的。</p>
-
-<p>可见，当$\gamma^{(k)}=\sqrt{Var[x^{(k)}]}$，而$\beta^{(k)}=E[x^{(k)}]$时BN层退化为恒等映射。</p>
-
-<p><strong>修改2：</strong></p>
-
-<p>由于我们通常采用mini-batch的SGD方法，因此我们在对分量进行正则化时，不再费力的对原问题的整个样本集分布求均值与方差，而用该batch中的样本来近似均值与方差。</p>
-
-<p>这样我们得到了Batch Normalization Transform：$BN_{\gamma,\beta}: x_{1…m}\rightarrow y_{1…m}$，其forward pass的算法如下图所示：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3x76e1vzgj30mx0gj451.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>注意，这里第2、3步中的平方与开根均为逐分量运算，与前面的修改1是一致的。</p>
-
-<h3 id="训练">训练</h3>
-
-<p>对于上面的BN层变换，作者推导出了其反向传播的公式，如下图所示：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3x7lp8a1aj30lr0bzgqe.jpg" alt="image.png" style="zoom:50%;" /></p>
 
     
     
@@ -379,84 +402,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 
 <p>自AlexNet在ILSVRC上大放异彩之后，CNN-based的方法在图像识别领域便成为了主流。在随后提出的GoogleNet与VGG系列模型中，作者都一定程度上采用了增加网络深度的方式来提高准确率。何凯明等人提出了Residual Network，在ImageNet挑战赛上将错误率由2014年GoogleNet的6.7%降低到了3.57%。</p>
 
-<h3 id="从一个问题说起">从一个问题说起</h3>
-
-<p>增加网络的层数（深度）一定可以提高模型的泛化能力吗？</p>
-
-<p>对于早期最普通的全连接网络而言，往往使用Sigmoid函数作为激活函数，由于Sigmoid函数在稍微大一点的位置梯度便趋近为0，因此在一个很深的网络中极有可能导致某个神经元的梯度退化到0，使得反向传播后面的梯度均被限制住，即所谓梯度消失问题。通过使用ReLU激活函数以及加入批归一化层(Batch Normalization)后，梯度消失问题基本能够解决，模型能够保证收敛。</p>
-
-<p>但在继续增大网络层数时，人们发现，错误率不降反升。如下图，我们发现不论是在训练集还是测试集上，在增加层数后误差均升高。由此可知该现象不是因过拟合产生的（否则训练集误差应更低）。在论文中将该现象成为<code class="language-plaintext highlighter-rouge">degradation</code>。</p>
-
-<blockquote>
-  <p>疑问：产生该现象的理论依据是什么？</p>
-</blockquote>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w2zvwkcpj30nr0cbn4c.jpg" alt="image.png" style="zoom:45%;" /></p>
-
-<p>Degradation现象的存在说明并非所有问题都能够简单地通过普通网络模型来进行拟合。但我们至少能够人为地构造一个网络，使得较深模型得到的结果并不比层数较浅的模型来得差。构造方法颇为直接：我们可以在浅层模型的基础上，在后面加上更深的层，并调整新加入层的权重，使其成为单位映射。这个构造便是Residual概念一个最核心的intuition。</p>
-
-<h3 id="residual-learning">Residual Learning</h3>
-
-<h4 id="残差映射">残差映射</h4>
-
-<p>在上面，我们构造了一个单位映射，然而大多数模型中神经元采用的都是非线性层（如Sigmoid，ReLU等）。利用非线性层去拟合一个线性（单位）映射往往效果并不佳。</p>
-
-<p>本论文创造性地提出了Residual Learning：设目标拟合函数为$\mathcal{H}(x)$，我们学习的非线性层参数用于拟合函数$\mathcal{F}(x)=\mathcal{H}(x)-x$。作者发现，最优化该残差函数比直接优化原函数更容易（深层次原因可能得等下学期学了优化理论之后才能理解）。在极端情况下，$\mathcal{H}(x)=x$，此时直接将参数函数$\mathcal{F}(x)$拟合至0比直接拟合原函数到恒等映射的难度显然更简单一些。</p>
-
-<p>这里突然想到，如果目标函数$\mathcal{H}(x)=0$，或$\mathcal{H}(x)=2x$，那么残差函数可能并没有更优。但作者也在文中提到，当目标函数比起零映射更接近恒等映射时，这个优化能够提供一个好的预处理效果。</p>
-
-<h4 id="残差块">残差块</h4>
-
-<p>作者提出的一个基本残差块的结果如下图所示：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w3vaw6q7j30g108fac8.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>即$y = \sigma(\mathcal{F}(x, {W_i})+x)$，其中$\mathcal{F}(x,{W_i})=W_2 \sigma(W_1 x)$，$\sigma$为非线性激活函数（在该式中省略了bias）。注意，在上式中我们需要保证该$x$的维数与经$\mathcal{F}$作用后的维数相等。对于维数不等的情况，主要有两种解决方法：</p>
-
-<ol>
-  <li>对加上的$x$进行投影操作</li>
-  <li>对加上的$x$，在多出的分量上补零</li>
-</ol>
-
-<p>在上图所示的残差块中，残差函数包括两个全连接层。事实上两个以上全连接层均可以尝试，但是只有一个全连接层时该残差块就退化为$y=\sigma(W_1 x + x)$的形式，与原本普通层并无差异。此外，残差块还可以应用到卷积层上。</p>
-
-<h4 id="网络结构">网络结构</h4>
-
-<p>作者提出的ResNet网络结构如下图：</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3w4lorgqcj30nq0tpwpm.jpg" alt="image.png" style="zoom:45%;" /></p>
-
-<p>首先，基本卷积层与池化层的构建思路来自于VGG模型系列，即多采用$3\times3$大小的卷积核，同时通过调整filter数目来尽可能地维持每一层的complexity。此外，将每两个卷积层构建一个残差块，而对于池化卷积层残差块（虚线）则使用上面所述的方式进行维数调整。</p>
-
-<h3 id="测试">测试</h3>
-
-<p>作者分别对18层与34层的plain net及ResNet进行了对比，发现增大层数后plain net的误差不降反升，可能是因为网络太深，当前的SGD算法无法快速使其收敛（收敛速度指数级的慢）；而对于ResNet，增大层数后准确率确实有明显的提高。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzbx1xxfj316i0dkdon.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<h4 id="shortcuts-的影响">Shortcuts 的影响</h4>
-
-<p>记得我们曾在上面提到过，对于残差块前后维数不等的情况（比如在池化或降采样阶段），我们可以选用不同的策略进行构建。作者对三种策略进行了测试：</p>
-
-<p>A. 零扩充</p>
-
-<p>B. 对增加的维数通过投影映射得到，其余原有的维数保持恒等映射</p>
-
-<p>C. 对整个shortcut做投影映射</p>
-
-<p>测试结果如下图第二栏所示。可见三种方式得到的误差均比plain net更低，但是三者间相差不大。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h3wzgqaracj30n60h3wni.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>最后作者还提到，ResNet具有极强的泛化能力，除了ImageNet上的结果，其在CIFAR-10、COCO的目标检测、图像分割等领域上都取得了极好的成果。</p>
-
-<h3 id="感想">感想</h3>
-
-<p>读完ResNet，不禁感叹intuition的重要性。整篇论文其实最核心的东西就在于将拟合原函数转化成了拟合残差函数，而这一灵感来源于对于degradation问题一个平凡的构造。对此我还是存在一定疑问，难道在实际应用中大多数问题比起零映射都更接近恒等映射吗？为什么ResNet能起到这么显著的提升呢？</p>
-
-<blockquote>
-  <p>读完后续需要精通：Batch Normalization</p>
-</blockquote>
 
     
     
@@ -614,86 +559,6 @@ but I’d rather show you the new and improved background image.</p>
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/2017/11/17/hydejacks-new-design/">Hydejack's New Design</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-<article id="post-2017-07-27-better-gem-support" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2017/07/27/better-gem-support/" class="flip-title">
-        Better Gem Support (v6.5)
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2017-07-27T00:00:00+08:00">27 Jul 2017</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/hydejack/" class="flip-title">Hydejack</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      Hydejack v6.5 includes various quality-of-life improvements, especially when using the gem-based version of the theme.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>This maintenance release includes various quality-of-life improvements,
-especially when using the gem-based version of the theme.
-These changes come in handy when using Hydejack for a quick (project-) page:
-The <code class="language-plaintext highlighter-rouge">home</code> layout, which is used when using <code class="language-plaintext highlighter-rouge">jekyll new</code>,
-is now a proper layout that displays a few posts/pages below the regular content,
-and it is again possible to define an author in <code class="language-plaintext highlighter-rouge">_config.yml</code>
-without setting up a <code class="language-plaintext highlighter-rouge">_data</code> directory (for more, see blow).</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2017/07/27/better-gem-support/">Better Gem Support (v6.5)</a>
 
       </p>
     </footer>
