@@ -35,7 +35,6 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Hiskiii" />
 <meta property="og:type" content="website" />
-<link rel="next" href="http://localhost:4000/page-2/" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
@@ -187,6 +186,88 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
     
 
   
+  
+
+
+<article id="post-2022-07-09-【论文笔记】Visual Concept综述：准备" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/" class="flip-title">
+        Visual Concept综述：准备
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-09T00:00:00+08:00">09 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      Visual concept的概念来源于计算机视觉的BOW模型。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="从bow-model开始">从BoW model开始</h3>
+
+<p>词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。</p>
+
+<p>BoW模型最主要的特点在于其并不包含原来文本中单词的顺序信息。</p>
+
+<p>词袋向量显然不一定能很好的表示原来文本的特征，一是其无序性，二是某些stop words频率极高但并没有什么用。一种方法是通过对每个term进行weighting。</p>
+
+<p><strong>n-gram</strong>模型对无序性这一点做了一点改进。它将文本中连续的n个terms当做一个词，其余采用和BoW模型一致的处理方式。这样就保留了文本中的一些连续信息，而BoW模型则可以视作是n-gram模型中n取1时的特殊情况。</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/">Visual Concept综述：准备</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
   
 
 
@@ -418,80 +499,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
   
 
 
-<article id="post-2017-11-22-example-content" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2017/11/22/example-content/" class="flip-title">
-        Example content
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2017-11-22T00:00:00+08:00">22 Nov 2017</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/hydejack/" class="flip-title">Hydejack</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>.</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2017/11/22/example-content/">Example content</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
 <article id="post-2017-11-17-hydejacks-new-design" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -529,7 +536,7 @@ on <a href="/tag/hydejack/" class="flip-title">Hydejack</a>
 
 
 
-on <a href="/tag/hydejack/" class="flip-title">Hydejack</a>
+on <span>Hydejack</span>
 
     </p>
 
@@ -574,14 +581,7 @@ but I’d rather show you the new and improved background image.</p>
       
       
       
-  <a
-    class=" "
-    href="/page-2/"
-    rel="next"
-    
-  >
-    Older
-  </a>
+  <span class=" ">Older</span>
 
 
     </li>
@@ -655,11 +655,11 @@ but I’d rather show you the new and improved background image.</p>
       <li>
         <a
           
-          href="/tag/hydejack/"
+          href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/"
           class="sidebar-nav-item"
           
           >
-          Hydejack
+          专题笔记
         </a>
       </li>
     

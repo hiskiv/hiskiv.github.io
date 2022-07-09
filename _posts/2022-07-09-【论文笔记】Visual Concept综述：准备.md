@@ -3,7 +3,7 @@ layout: post
 title: Visual Concept综述：准备
 description: >
   Visual concept的概念来源于计算机视觉的BOW模型。
-tags: [学习笔记]
+tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
 
@@ -18,6 +18,8 @@ BoW模型最主要的特点在于其并不包含原来文本中单词的顺序�
 词袋向量显然不一定能很好的表示原来文本的特征，一是其无序性，二是某些stop words频率极高但并没有什么用。一种方法是通过对每个term进行weighting。
 
 **n-gram**模型对无序性这一点做了一点改进。它将文本中连续的n个terms当做一个词，其余采用和BoW模型一致的处理方式。这样就保留了文本中的一些连续信息，而BoW模型则可以视作是n-gram模型中n取1时的特殊情况。
+
+<!--more-->
 
 ### BoW model in Computer Vision
 
