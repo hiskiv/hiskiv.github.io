@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【论文笔记】DenseNet
+title: Visual Concept综述：准备
 description: >
   DenseNet从ResNet受到启发，采用了一种“信息shortcut”的思路，创造性地将每一个block的输出连到后面所有block的输入上。DenseNet在保持与ResNet相近的准确率与误差的同时大大减少了参数的数量，被评为CVPR2017的Best paper。
 tags: [论文笔记]
