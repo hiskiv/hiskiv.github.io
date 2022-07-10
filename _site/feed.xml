@@ -1,5 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-09T15:47:08+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
-</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述：准备</title><link href="http://localhost:4000/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/" rel="alternate" type="text/html" title="Visual Concept综述：准备" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0:%E5%87%86%E5%A4%87</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-10T11:01:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述（二）</title><link href="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" rel="alternate" type="text/html" title="Visual Concept综述（二）" /><published>2022-07-10T00:00:00+08:00</published><updated>2022-07-10T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/10/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%BA%8C)</id><content type="html" xml:base="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+
+&lt;h4 id=&quot;neural-discrete-representation-learning&quot;&gt;&lt;a href=&quot;https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html&quot;&gt;Neural Discrete Representation Learning&lt;/a&gt;&lt;/h4&gt;
+
+&lt;h5 id=&quot;quesion&quot;&gt;Quesion&lt;/h5&gt;
+
+&lt;p&gt;Discrete representations are a natural fit for complex reasoning, planning and predictive learning.&lt;/p&gt;
+
+&lt;h5 id=&quot;model&quot;&gt;Model&lt;/h5&gt;
+
+&lt;p&gt;VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.&lt;/p&gt;
+
+&lt;p&gt;其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008qPTh8ly1h41mrpza74j312b0cagqc.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;VQ-VAE模型结构如上图所示。&lt;/p&gt;
+
+&lt;p&gt;当图像输入x传入时：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。&lt;/li&gt;
+  &lt;li&gt;将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。&lt;/li&gt;
+  &lt;li&gt;将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的）&lt;/p&gt;
+
+&lt;p&gt;我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Discrete Representation Learning Quesion Discrete representations are a natural fit for complex reasoning, planning and predictive learning. Model VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations. 其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。 VQ-VAE模型结构如上图所示。 当图像输入x传入时： 经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。 将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。 将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。 在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的） 我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</summary></entry><entry><title type="html">Visual Concept综述（一）</title><link href="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" rel="alternate" type="text/html" title="Visual Concept综述（一）" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%80)</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
 
 &lt;p&gt;词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。&lt;/p&gt;
 
@@ -141,10 +169,6 @@
 &lt;p&gt;这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。&lt;/p&gt;
 
 &lt;!--more--&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;一点题外话：前几天跟导师聊到如何读论文的问题。我感觉论文浩如烟海，每一篇都花两三天来细细地读是否太费时间了。导师的回答是，需要精度的论文主要就是那些最有名的、最有开创性的模型，其余论文大多是在这些模型的基础上加以改进，调整一下Loss或者调整一下Arch之类，因此精读完最有名的模型后，对于其他论文基本就可以快速理解。&lt;/p&gt;
-&lt;/blockquote&gt;
 
 &lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 

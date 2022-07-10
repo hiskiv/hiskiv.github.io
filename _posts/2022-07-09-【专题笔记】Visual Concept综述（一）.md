@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Visual Concept综述：准备
+title: Visual Concept综述（一）
 description: >
   Visual concept的概念来源于计算机视觉的BOW模型。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
 
-## Visual Concept综述：准备
+## Visual Concept综述（一）
 
 ### 从BoW model开始
 

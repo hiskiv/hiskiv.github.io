@@ -35,6 +35,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Hiskiii" />
 <meta property="og:type" content="website" />
+<link rel="next" href="http://localhost:4000/page-2/" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
@@ -189,11 +190,112 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
   
 
 
-<article id="post-2022-07-09-【论文笔记】Visual Concept综述：准备" class="page post mb6" role="article">
+<article id="post-2022-07-10-【专题笔记】Visual Concept综述（二）" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
-      <a href="/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/" class="flip-title">
-        Visual Concept综述：准备
+      <a href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" class="flip-title">
+        Visual Concept综述（二）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-10T00:00:00+08:00">10 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      Visual concept的概念来源于计算机视觉的BOW模型。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="neural-discrete-representation-learning"><a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">Neural Discrete Representation Learning</a></h4>
+
+<h5 id="quesion">Quesion</h5>
+
+<p>Discrete representations are a natural fit for complex reasoning, planning and predictive learning.</p>
+
+<h5 id="model">Model</h5>
+
+<p>VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.</p>
+
+<p>其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。</p>
+
+<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h41mrpza74j312b0cagqc.jpg" alt="image.png" style="zoom:50%;" /></p>
+
+<p>VQ-VAE模型结构如上图所示。</p>
+
+<p>当图像输入x传入时：</p>
+
+<ol>
+  <li>经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。</li>
+  <li>将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。</li>
+  <li>将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。</li>
+</ol>
+
+<p>在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的）</p>
+
+<p>我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</p>
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">Visual Concept综述（二）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+<article id="post-2022-07-09-【专题笔记】Visual Concept综述（一）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" class="flip-title">
+        Visual Concept综述（一）
       </a>
     </h1>
 
@@ -260,7 +362,7 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
     
     <footer>
       <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2022/07/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%87%86%E5%A4%87/">Visual Concept综述：准备</a>
+        Continue reading <a class="heading flip-title" href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">Visual Concept综述（一）</a>
 
       </p>
     </footer>
@@ -496,83 +598,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 </article>
 
 
-  
-
-
-<article id="post-2017-11-17-hydejacks-new-design" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2017/11/17/hydejacks-new-design/" class="flip-title">
-        Hydejack's New Design
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2017-11-17T00:00:00+08:00">17 Nov 2017</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <span>Hydejack</span>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      This post introduces Hydejack’s now background image, color palette and logo.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>While v7 brings an <a href="/CHANGELOG/#v700">insane amount of new stuff</a>, the most notable change is the new background image.
-It is no longer <em>anti-selling</em> the theme.
-The old image was a blurred version of Napoleon Bonaparte, which was just… weird. I could tell the story of how this came to be,
-but I’d rather show you the new and improved background image.</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2017/11/17/hydejacks-new-design/">Hydejack's New Design</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
 
 <h2 class="sr-only">Pagination</h2>
 <nav class="pagination heading clearfix" role="navigation">
@@ -581,7 +606,14 @@ but I’d rather show you the new and improved background image.</p>
       
       
       
-  <span class=" ">Older</span>
+  <a
+    class=" "
+    href="/page-2/"
+    rel="next"
+    
+  >
+    Older
+  </a>
 
 
     </li>
