@@ -10,6 +10,12 @@ excerpt_separator: <!--more-->
 
 ## Visual Concept综述（三）
 
+关于Visual concept这一名词：
+
+1. What examples are there of a particular visual concept?
+   By a visual concept we mean a collection of objects with ''characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. ---- from learn-able and non-learn-able Visual Concepts by Haim Shvaster
+2. concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。
+
 ### 系列论文
 
 [Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention]()
