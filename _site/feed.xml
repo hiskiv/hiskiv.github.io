@@ -1,5 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-10T11:01:59+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
-</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述（二）</title><link href="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" rel="alternate" type="text/html" title="Visual Concept综述（二）" /><published>2022-07-10T00:00:00+08:00</published><updated>2022-07-10T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/10/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%BA%8C)</id><content type="html" xml:base="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-13T19:52:26+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述（三）</title><link href="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" rel="alternate" type="text/html" title="Visual Concept综述（三）" /><published>2022-07-13T00:00:00+08:00</published><updated>2022-07-13T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/13/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%89)</id><content type="html" xml:base="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;approximating-cnns-with-bag-of-localfeatures-models-works-surprisingly-well-on-imagenet&quot;&gt;&lt;a href=&quot;&quot;&gt;APPROXIMATING CNNS WITH BAG-OF-LOCALFEATURES MODELS WORKS SURPRISINGLY WELL ON IMAGENET&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;Motivation&lt;/strong&gt;: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Model&lt;/strong&gt;：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008u1Mkqly1h45gppj693j30kk0g0ju7.jpg&quot; alt=&quot;image-20220713111722323.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;模型结构如下所示：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;首先在图像上截取多个$q\times q$大小的patch，都将其作为输入通过多个Residual Block得到一个2048维的特征表示。随后通过线性分类层得到1000维概率向量class evidence（假设分类结果有1000类），来决定判断每个patch的所属类别。（作者使用的Residual Block中卷积层大小均取为1×1，这样便将最上层的卷积层reception field限制到大小为$q\times q$）&lt;/li&gt;
+  &lt;li&gt;最终我们通过对每个patch类别的特征向量class evidence进行求平均，得到image level的class evidence&lt;/li&gt;
+  &lt;li&gt;最终使用softmax，找到image level中概率最大的类别，从而实现分类目的&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在这里各个patch都有一个对应的class evidence向量，其直接在原图上进行提取，因此具有较强的可解释性。&lt;/p&gt;
+
+&lt;h5 id=&quot;思考&quot;&gt;思考&lt;/h5&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;BagNet是如何将BoF模型融入DNN的？&lt;/p&gt;
+
+    &lt;p&gt;BagNet模型中的BoF是离散选择的图像上的patches。这些原始的patches通过卷积层得到特征向量。而传统的BoF模型是先提取出特征，再对这些特征进行clustering。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;可解释性在哪里体现？&lt;/p&gt;
+
+    &lt;p&gt;由于原图中的每个patch都通过ResNet生成一个特征向量，这一特征向量包含了所有类别的概率，将各个类别的所有patch概率在heatmap上可视化便可以看出原图中各个类别被的判断情况。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;network-dissection-quantifying-interpretability-of-deep-visual-representations&quot;&gt;&lt;a href=&quot;&quot;&gt;Network Dissection: Quantifying Interpretability of Deep Visual Representations&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;motivation&lt;/strong&gt;:关注可解释性。disentangled representation：解耦表征，将特征表示分成数个互相独立的因素，且每个因素都能表示某种语义含义。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Broden数据集&lt;/strong&gt;：作者搭建了一个数据集Broden，其中有pixel-wide的各种语义标注（包括颜色、材料、物体、纹理等），有点像segmentation。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Method&lt;/strong&gt;: Network Dissection&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;整理人为标记好的visual concept集合&lt;/li&gt;
+  &lt;li&gt;确定各个隐藏单元对各个concept的响应程度&lt;/li&gt;
+  &lt;li&gt;量化隐藏单元重合情况（concept pairs，IoU）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;对于一个训练好的网络，将Broden数据集中的图片输入，对中间第k个hidden layer的输出，对于第c个concept，进行binary segmentation，并上采样到原图大小。随后通过计算该结果与原语义标注的IoU得到interpretability的分数。该分数也可以视作第k个hidden layer对于concept c的准确性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;思考&lt;/strong&gt;：这里的visual concept是人为标注、设定的，缺乏灵活性。可能存在某些隐式的特征人类一般不会考虑到。&lt;/p&gt;
+
+&lt;p&gt;这里的visual concept与ProtoPNet与VQ-VAE中的那种似乎并不是同一个东西qwq&lt;/p&gt;
+
+&lt;h4 id=&quot;taming-transformers-for-high-resolution-image-synthesis&quot;&gt;&lt;a href=&quot;&quot;&gt;Taming Transformers for High-Resolution Image Synthesis&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;:star:&lt;strong&gt;CVPR 2021 Oral&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Buzzling point&lt;/strong&gt;: 结合CNN与Transformer各自的优点，在高分辨率图像合成上取得了优秀的结果。我们现在主要关心的是，这篇文章中首先通过CNN学习到一个包含上下文内容的图像组成vocabulary，再通过这些vocabulary的复合通过Transformer拟出高分辨率图像。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Method Motivation&lt;/strong&gt;: 高分辨率图像合成需要理解图像的全局复合，使其在局部真实的同时也要保证全局的pattern是一致的。因此作者认为，比起在pixel粒度表示图片，更应该使用一种上下文丰富的code来表示图片。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Model&lt;/strong&gt;: （CNN部分）&lt;/p&gt;
+
+&lt;p&gt;一个codebook：$\mathcal{Z}={z_k}^{K}_{k=1}\subset \R^{n_z}$, 其中$n_z$为codes向量的长度，$z_k\in\R^{n_z}$。每个图片可以通过codes的空间性排列构成，即$z_q\in \R^{h\times w\times n_z}$。&lt;/p&gt;
+
+&lt;p&gt;为学习codebooks，作者构建一个由Encoder(E)与Decoder构成的卷积模型，二者结合即能学习如何通过离散的codebook元素表示一个图像。具体而言，对于图像$x$，通过该模型进行表示得$\hat{x}=G(z_q)$，其中$z_q=\textbf{q}(\hat{z}):=(argmin_{z_k\in \mathcal{Z}}|\hat{z}&lt;em&gt;{ij}-z_k|)\in \R^{h\times w\times n_z}$，$\hat{z}=E(x)$。注意，$\hat{z}&lt;/em&gt;{ij}$的大小是$n_z$。&lt;/p&gt;
+
+&lt;p&gt;作者改造了VQ-VAE模型，提出VQGAN模型，来最大化地压缩codebook。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention APPROXIMATING CNNS WITH BAG-OF-LOCALFEATURES MODELS WORKS SURPRISINGLY WELL ON IMAGENET Motivation: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。 Model：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。</summary></entry><entry><title type="html">Visual Concept综述（二）</title><link href="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" rel="alternate" type="text/html" title="Visual Concept综述（二）" /><published>2022-07-10T00:00:00+08:00</published><updated>2022-07-10T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/10/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%BA%8C)</id><content type="html" xml:base="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
 
 &lt;h4 id=&quot;neural-discrete-representation-learning&quot;&gt;&lt;a href=&quot;https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html&quot;&gt;Neural Discrete Representation Learning&lt;/a&gt;&lt;/h4&gt;
 
@@ -25,9 +98,9 @@
   &lt;li&gt;将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的）&lt;/p&gt;
+&lt;p&gt;在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的）&lt;/p&gt;
 
-&lt;p&gt;我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Discrete Representation Learning Quesion Discrete representations are a natural fit for complex reasoning, planning and predictive learning. Model VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations. 其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。 VQ-VAE模型结构如上图所示。 当图像输入x传入时： 经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。 将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。 将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。 在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的） 我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</summary></entry><entry><title type="html">Visual Concept综述（一）</title><link href="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" rel="alternate" type="text/html" title="Visual Concept综述（一）" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%80)</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
+&lt;p&gt;我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Discrete Representation Learning Quesion Discrete representations are a natural fit for complex reasoning, planning and predictive learning. Model VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations. 其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。 VQ-VAE模型结构如上图所示。 当图像输入x传入时： 经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。 将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。 将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。 在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的） 我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</summary></entry><entry><title type="html">Visual Concept综述（一）</title><link href="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" rel="alternate" type="text/html" title="Visual Concept综述（一）" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%80)</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
 
 &lt;p&gt;词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。&lt;/p&gt;
 
