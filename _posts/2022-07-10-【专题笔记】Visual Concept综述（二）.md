@@ -2,7 +2,7 @@
 layout: post
 title: Visual Concept综述（二）
 description: >
-  Visual concept的概念来源于计算机视觉的BOW模型。
+  VQ-VAE模型中离散的embedding space向量即是某种semantic representations。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 
@@ -34,6 +34,6 @@ VQ-VAE模型结构如上图所示。
 2. 将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。
 3. 将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。
 
-在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\grad_zL$所示。（因为argmin是不光滑的）
+在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的）
 
 我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。
