@@ -22,6 +22,8 @@ Discrete representations are a natural fit for complex reasoning, planning and p
 
 VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.
 
+<!--more-->
+
 其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。
 
 <img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h41mrpza74j312b0cagqc.jpg" alt="image.png" style="zoom:50%;" />

@@ -24,22 +24,22 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
   
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Visual Concept综述（三） | Hiskiii</title>
+<title>Visual Concept综述（四） | Hiskiii</title>
 <meta name="generator" content="Jekyll v3.9.2" />
-<meta property="og:title" content="Visual Concept综述（三）" />
+<meta property="og:title" content="Visual Concept综述（四）" />
 <meta name="author" content="Hiski" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="对Visual Concept的进一步理解。" />
-<meta property="og:description" content="对Visual Concept的进一步理解。" />
-<link rel="canonical" href="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" />
-<meta property="og:url" content="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" />
+<meta name="description" content="决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。" />
+<meta property="og:description" content="决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。" />
+<link rel="canonical" href="http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" />
+<meta property="og:url" content="http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" />
 <meta property="og:site_name" content="Hiskiii" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-07-13T00:00:00+08:00" />
+<meta property="article:published_time" content="2022-07-14T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Visual Concept综述（三）" />
+<meta property="twitter:title" content="Visual Concept综述（四）" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-13T00:00:00+08:00","datePublished":"2022-07-13T00:00:00+08:00","description":"对Visual Concept的进一步理解。","headline":"Visual Concept综述（三）","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-14T00:00:00+08:00","datePublished":"2022-07-14T00:00:00+08:00","description":"决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。","headline":"Visual Concept综述（四）","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -69,7 +69,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
 
 
-<link rel="alternate" href="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" hreflang="en">
+<link rel="alternate" href="http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" hreflang="en">
 
 <link rel="shortcut icon" href="/assets/icons/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/icons/icon.png">
@@ -187,17 +187,17 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
     
 
 
-<article id="post-2022-07-13-【专题笔记】Visual Concept综述（三）" class="page post" role="article">
+<article id="post-2022-07-14-【专题笔记】Visual Concept综述（四）" class="page post" role="article">
   <header>
     <h1 class="post-title">
       
-        Visual Concept综述（三）
+        Visual Concept综述（四）
       
     </h1>
 
     <p class="post-date heading">
       
-      <time datetime="2022-07-13T00:00:00+08:00">13 Jul 2022</time>
+      <time datetime="2022-07-14T00:00:00+08:00">14 Jul 2022</time>
       
       
       
@@ -234,7 +234,7 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
   
     <p class="message" >
-      对Visual Concept的进一步理解。
+      决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。
 
     </p>
   
@@ -243,88 +243,70 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
   </header>
 
   
-    <p>关于Visual concept这一名词：</p>
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="neural-prototype-trees-for-interpretable-fine-grained-image-recognition"><a href="">Neural Prototype Trees for Interpretable Fine-grained Image Recognition</a></h4>
+
+<p><strong>motivation/achievement</strong>:</p>
 
 <ol>
-  <li>What examples are there of a particular visual concept?
-By a visual concept we mean a collection of objects with ‘‘characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. —- from learn-able and non-learn-able Visual Concepts by Haim Shvaster</li>
-  <li>concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。</li>
+  <li>希望在细粒度(fine-grained)图像分类任务上能取得更好的可解释性。决策树模型本身具有的强解释性与ProtoPNet相结合，可以得到更好的可解释性。</li>
+  <li>在分类任务的准确度上比ProtoPNet更优，同时相比之下只需要10%的prototypes。</li>
 </ol>
 
 <!--more-->
 
-<h3 id="系列论文">系列论文</h3>
+<p><strong>model</strong>: Prototype tree (ProtoTree)</p>
 
-<p><a href="">Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention</a></p>
+<p>模型使用的决策树是soft decision tree，即在每个结点处，两个儿子均会向下经过，而不是仅选择其中之一。</p>
 
-<h4 id="approximating-cnns-with-bag-of-localfeatures-models-works-surprisingly-well-on-imagenet"><a href="">APPROXIMATING CNNS WITH BAG-OF-LOCALFEATURES MODELS WORKS SURPRISINGLY WELL ON IMAGENET</a></h4>
+<p><img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h46giyhmhvj30z009ldk1.jpg" alt="image.png" style="zoom:50%;" /></p>
 
-<p><strong>Motivation</strong>: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。</p>
+<p>具体而言，输入图像$x$经过卷积网络得到输出$z=f(x;w)$，作为soft decision tree的输入。决策树上的每一个节点均是与ProtoPNet中所述相同的一个Prototype。在每个节点（设为$n$）处，其有两个儿子，分别为$n.left$代表原图中没有该prototype、$n.right$代表原图中存在该prototype。节点对应的prototype以sliding window的方式划过卷积层输出$z$的每个大小匹配的patch，找到L2距离最小的patch。通过之间的距离$d$，决策树预测“存在该prototype”的概率为$p_{e(n,n.right)}(z)=e^{-d}$。</p>
 
-<p><strong>Model</strong>：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。</p>
+<p>而每个叶子节点均包括了一个各预测类别的分数，将其做softmax处理后与路径上的预测概率相乘即得到最终的预测分数。</p>
 
-<p><img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h45gppj693j30kk0g0ju7.jpg" alt="image-20220713111722323.png" style="zoom:50%;" /></p>
+<h3 id="关于visual-concept的一个初步outline">关于visual concept的一个初步outline：</h3>
 
-<p>模型结构如下所示：</p>
+<p><strong>Definition</strong>: Properties of an image constituent. It can contain information of shape, material, high level concept or even (sub)object class.</p>
+
+<p><strong>Form</strong>: The form of visual concepts can be set of feature vectors (maybe discrete), or human specified pixel/region labels (eg. <em>Network dissection</em>).</p>
+
+<p><strong>Origin</strong>: Traditional model BoF, using codes from a discrete codebook to encode original image (without caring spacial relations).</p>
+
+<p><strong>Motivation/goal</strong>:</p>
 
 <ol>
-  <li>首先在图像上截取多个$q\times q$大小的patch，都将其作为输入通过多个Residual Block得到一个2048维的特征表示。随后通过线性分类层得到1000维概率向量class evidence（假设分类结果有1000类），来决定判断每个patch的所属类别。（作者使用的Residual Block中卷积层大小均取为1×1，这样便将最上层的卷积层reception field限制到大小为$q\times q$）</li>
-  <li>最终我们通过对每个patch类别的特征向量class evidence进行求平均，得到image level的class evidence</li>
-  <li>最终使用softmax，找到image level中概率最大的类别，从而实现分类目的</li>
+  <li>Can maintain a high interpretability (<em>ProtoPNet</em> etc. and <em>NetDissection</em> etc.)</li>
+  <li>Can be spanned to fit some discrete properties (<em>VQ-VAE</em> etc.)</li>
+  <li>Can ensemble some global properties/context of a category of images (<em>VQGAN</em> etc.)</li>
+  <li>Because the codebook is finite and discrete, it’s easier to deal with</li>
 </ol>
 
-<p>在这里各个patch都有一个对应的class evidence向量，其直接在原图上进行提取，因此具有较强的可解释性。</p>
+<blockquote>
+  <p>(?) About network dissection based methods: seems against the grain here</p>
+</blockquote>
 
-<h5 id="思考">思考</h5>
+<p><strong>Some methods</strong>:</p>
 
-<ol>
+<ul>
   <li>
-    <p>BagNet是如何将BoF模型融入DNN的？</p>
-
-    <p>BagNet模型中的BoF是离散选择的图像上的patches。这些原始的patches通过卷积层得到特征向量。而传统的BoF模型是先提取出特征，再对这些特征进行clustering。</p>
+    <p>prototypes based (ProtoPNet, NP-ProtoPNet, Prototype trees)</p>
   </li>
   <li>
-    <p>可解释性在哪里体现？</p>
-
-    <p>由于原图中的每个patch都通过ResNet生成一个特征向量，这一特征向量包含了所有类别的概率，将各个类别的所有patch概率在heatmap上可视化便可以看出原图中各个类别被的判断情况。</p>
+    <p>an embedding codebook of latent features (VQ-VAE, VQGAN) [similar to prototypes]</p>
   </li>
-</ol>
+  <li>
+    <p>dataset with human-labeled concepts on pixel level or region level (NetDissection)</p>
+  </li>
+  <li>
+    <p>using heatmap and upsampling to visualize on the orignal image.</p>
+  </li>
+</ul>
 
-<h4 id="network-dissection-quantifying-interpretability-of-deep-visual-representations"><a href="">Network Dissection: Quantifying Interpretability of Deep Visual Representations</a></h4>
-
-<p><strong>motivation</strong>:关注可解释性。disentangled representation：解耦表征，将特征表示分成数个互相独立的因素，且每个因素都能表示某种语义含义。</p>
-
-<p><strong>Broden数据集</strong>：作者搭建了一个数据集Broden，其中有pixel-wide的各种语义标注（包括颜色、材料、物体、纹理等），有点像segmentation。</p>
-
-<p><strong>Method</strong>: Network Dissection</p>
-
-<ol>
-  <li>整理人为标记好的visual concept集合</li>
-  <li>确定各个隐藏单元对各个concept的响应程度</li>
-  <li>量化隐藏单元重合情况（concept pairs，IoU）</li>
-</ol>
-
-<p>对于一个训练好的网络，将Broden数据集中的图片输入，对中间第k个hidden layer的输出，对于第c个concept，进行binary segmentation，并上采样到原图大小。随后通过计算该结果与原语义标注的IoU得到interpretability的分数。该分数也可以视作第k个hidden layer对于concept c的准确性。</p>
-
-<p><strong>思考</strong>：这里的visual concept是人为标注、设定的，缺乏灵活性。可能存在某些隐式的特征人类一般不会考虑到。</p>
-
-<p>这里的visual concept与ProtoPNet与VQ-VAE中的那种似乎并不是同一个东西qwq</p>
-
-<h4 id="taming-transformers-for-high-resolution-image-synthesis"><a href="">Taming Transformers for High-Resolution Image Synthesis</a></h4>
-
-<p>:star:<strong>CVPR 2021 Oral</strong></p>
-
-<p><strong>Buzzling point</strong>: 结合CNN与Transformer各自的优点，在高分辨率图像合成上取得了优秀的结果。我们现在主要关心的是，这篇文章中首先通过CNN学习到一个包含上下文内容的图像组成vocabulary，再通过这些vocabulary的复合通过Transformer拟出高分辨率图像。</p>
-
-<p><strong>Method Motivation</strong>: 高分辨率图像合成需要理解图像的全局复合，使其在局部真实的同时也要保证全局的pattern是一致的。因此作者认为，比起在pixel粒度表示图片，更应该使用一种上下文丰富的code来表示图片。</p>
-
-<p><strong>Model</strong>: （CNN部分）</p>
-
-<p>一个codebook：$\mathcal{Z}={z_k}^{K}_{k=1}\subset \R^{n_z}$, 其中$n_z$为codes向量的长度，$z_k\in\R^{n_z}$。每个图片可以通过codes的空间性排列构成，即$z_q\in \R^{h\times w\times n_z}$。</p>
-
-<p>为学习codebooks，作者构建一个由Encoder(E)与Decoder构成的卷积模型，二者结合即能学习如何通过离散的codebook元素表示一个图像。具体而言，对于图像$x$，通过该模型进行表示得$\hat{x}=G(z_q)$，其中$z_q=\textbf{q}(\hat{z}):=(argmin_{z_k\in \mathcal{Z}}|\hat{z}<em>{ij}-z_k|)\in \R^{h\times w\times n_z}$，$\hat{z}=E(x)$。注意，$\hat{z}</em>{ij}$的大小是$n_z$。</p>
-
-<p>作者改造了VQ-VAE模型，提出VQGAN模型，来最大化地压缩codebook。</p>
+<blockquote>
+  <p>关于BagNet: 感觉严格上与这里的visual concept关系并不大，BagNet中的局部特征块是直接在原图上截取的，有点接近于Network Dissection一系。</p>
+</blockquote>
 
   
 </article>
@@ -454,10 +436,10 @@ By a visual concept we mean a collection of objects with ‘‘characteristic sh
 
 
 <li>
-  <a href="/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" class="h4 flip-title">
-    <span>Visual Concept综述（四）</span>
+  <a href="/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" class="h4 flip-title">
+    <span>Visual Concept综述（三）</span>
   </a>
-  <time class="heading faded fine" datetime="2022-07-14T00:00:00+08:00">14 Jul 2022</time>
+  <time class="heading faded fine" datetime="2022-07-13T00:00:00+08:00">13 Jul 2022</time>
 </li>
 
     

@@ -2,7 +2,7 @@
 layout: post
 title: Visual Concept综述（四）
 description: >
-  决策树：另一种高可解释性的模型。
+  决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
@@ -17,6 +17,8 @@ excerpt_separator: <!--more-->
 
 1. 希望在细粒度(fine-grained)图像分类任务上能取得更好的可解释性。决策树模型本身具有的强解释性与ProtoPNet相结合，可以得到更好的可解释性。
 2. 在分类任务的准确度上比ProtoPNet更优，同时相比之下只需要10%的prototypes。
+
+<!--more-->
 
 **model**: Prototype tree (ProtoTree)
 

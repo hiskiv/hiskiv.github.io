@@ -1,5 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-13T19:52:26+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
-</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述（三）</title><link href="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" rel="alternate" type="text/html" title="Visual Concept综述（三）" /><published>2022-07-13T00:00:00+08:00</published><updated>2022-07-13T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/13/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%89)</id><content type="html" xml:base="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-07-14T15:30:53+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hiskiii</title><subtitle>一个简单用于记录学习、生活及思考的博客。
+</subtitle><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><entry><title type="html">Visual Concept综述（四）</title><link href="http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" rel="alternate" type="text/html" title="Visual Concept综述（四）" /><published>2022-07-14T00:00:00+08:00</published><updated>2022-07-14T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/14/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E5%9B%9B)</id><content type="html" xml:base="http://localhost:4000/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+
+&lt;h4 id=&quot;neural-prototype-trees-for-interpretable-fine-grained-image-recognition&quot;&gt;&lt;a href=&quot;&quot;&gt;Neural Prototype Trees for Interpretable Fine-grained Image Recognition&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;strong&gt;motivation/achievement&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;希望在细粒度(fine-grained)图像分类任务上能取得更好的可解释性。决策树模型本身具有的强解释性与ProtoPNet相结合，可以得到更好的可解释性。&lt;/li&gt;
+  &lt;li&gt;在分类任务的准确度上比ProtoPNet更优，同时相比之下只需要10%的prototypes。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;strong&gt;model&lt;/strong&gt;: Prototype tree (ProtoTree)&lt;/p&gt;
+
+&lt;p&gt;模型使用的决策树是soft decision tree，即在每个结点处，两个儿子均会向下经过，而不是仅选择其中之一。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008u1Mkqly1h46giyhmhvj30z009ldk1.jpg&quot; alt=&quot;image.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;具体而言，输入图像$x$经过卷积网络得到输出$z=f(x;w)$，作为soft decision tree的输入。决策树上的每一个节点均是与ProtoPNet中所述相同的一个Prototype。在每个节点（设为$n$）处，其有两个儿子，分别为$n.left$代表原图中没有该prototype、$n.right$代表原图中存在该prototype。节点对应的prototype以sliding window的方式划过卷积层输出$z$的每个大小匹配的patch，找到L2距离最小的patch。通过之间的距离$d$，决策树预测“存在该prototype”的概率为$p_{e(n,n.right)}(z)=e^{-d}$。&lt;/p&gt;
+
+&lt;p&gt;而每个叶子节点均包括了一个各预测类别的分数，将其做softmax处理后与路径上的预测概率相乘即得到最终的预测分数。&lt;/p&gt;
+
+&lt;h3 id=&quot;关于visual-concept的一个初步outline&quot;&gt;关于visual concept的一个初步outline：&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition&lt;/strong&gt;: Properties of an image constituent. It can contain information of shape, material, high level concept or even (sub)object class.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Form&lt;/strong&gt;: The form of visual concepts can be set of feature vectors (maybe discrete), or human specified pixel/region labels (eg. &lt;em&gt;Network dissection&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Origin&lt;/strong&gt;: Traditional model BoF, using codes from a discrete codebook to encode original image (without caring spacial relations).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Motivation/goal&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Can maintain a high interpretability (&lt;em&gt;ProtoPNet&lt;/em&gt; etc. and &lt;em&gt;NetDissection&lt;/em&gt; etc.)&lt;/li&gt;
+  &lt;li&gt;Can be spanned to fit some discrete properties (&lt;em&gt;VQ-VAE&lt;/em&gt; etc.)&lt;/li&gt;
+  &lt;li&gt;Can ensemble some global properties/context of a category of images (&lt;em&gt;VQGAN&lt;/em&gt; etc.)&lt;/li&gt;
+  &lt;li&gt;Because the codebook is finite and discrete, it’s easier to deal with&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;(?) About network dissection based methods: seems against the grain here&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Some methods&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;prototypes based (ProtoPNet, NP-ProtoPNet, Prototype trees)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;an embedding codebook of latent features (VQ-VAE, VQGAN) [similar to prototypes]&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;dataset with human-labeled concepts on pixel level or region level (NetDissection)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;using heatmap and upsampling to visualize on the orignal image.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;关于BagNet: 感觉严格上与这里的visual concept关系并不大，BagNet中的局部特征块是直接在原图上截取的，有点接近于Network Dissection一系。&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Prototype Trees for Interpretable Fine-grained Image Recognition motivation/achievement: 希望在细粒度(fine-grained)图像分类任务上能取得更好的可解释性。决策树模型本身具有的强解释性与ProtoPNet相结合，可以得到更好的可解释性。 在分类任务的准确度上比ProtoPNet更优，同时相比之下只需要10%的prototypes。</summary></entry><entry><title type="html">Visual Concept综述（三）</title><link href="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" rel="alternate" type="text/html" title="Visual Concept综述（三）" /><published>2022-07-13T00:00:00+08:00</published><updated>2022-07-13T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/13/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%89)</id><content type="html" xml:base="http://localhost:4000/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/">&lt;p&gt;关于Visual concept这一名词：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;What examples are there of a particular visual concept?
+By a visual concept we mean a collection of objects with ‘‘characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. —- from learn-able and non-learn-able Visual Concepts by Haim Shvaster&lt;/li&gt;
+  &lt;li&gt;concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!--more--&gt;
+
+&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;&quot;&gt;Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention&lt;/a&gt;&lt;/p&gt;
 
@@ -8,8 +81,6 @@
 &lt;p&gt;&lt;strong&gt;Motivation&lt;/strong&gt;: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Model&lt;/strong&gt;：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。&lt;/p&gt;
-
-&lt;!--more--&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://tva1.sinaimg.cn/large/008u1Mkqly1h45gppj693j30kk0g0ju7.jpg&quot; alt=&quot;image-20220713111722323.png&quot; style=&quot;zoom:50%;&quot; /&gt;&lt;/p&gt;
 
@@ -72,7 +143,7 @@
 
 &lt;p&gt;为学习codebooks，作者构建一个由Encoder(E)与Decoder构成的卷积模型，二者结合即能学习如何通过离散的codebook元素表示一个图像。具体而言，对于图像$x$，通过该模型进行表示得$\hat{x}=G(z_q)$，其中$z_q=\textbf{q}(\hat{z}):=(argmin_{z_k\in \mathcal{Z}}|\hat{z}&lt;em&gt;{ij}-z_k|)\in \R^{h\times w\times n_z}$，$\hat{z}=E(x)$。注意，$\hat{z}&lt;/em&gt;{ij}$的大小是$n_z$。&lt;/p&gt;
 
-&lt;p&gt;作者改造了VQ-VAE模型，提出VQGAN模型，来最大化地压缩codebook。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention APPROXIMATING CNNS WITH BAG-OF-LOCALFEATURES MODELS WORKS SURPRISINGLY WELL ON IMAGENET Motivation: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。 Model：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。</summary></entry><entry><title type="html">Visual Concept综述（二）</title><link href="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" rel="alternate" type="text/html" title="Visual Concept综述（二）" /><published>2022-07-10T00:00:00+08:00</published><updated>2022-07-10T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/10/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%BA%8C)</id><content type="html" xml:base="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
+&lt;p&gt;作者改造了VQ-VAE模型，提出VQGAN模型，来最大化地压缩codebook。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">关于Visual concept这一名词： What examples are there of a particular visual concept? By a visual concept we mean a collection of objects with ‘‘characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. —- from learn-able and non-learn-able Visual Concepts by Haim Shvaster concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。</summary></entry><entry><title type="html">Visual Concept综述（二）</title><link href="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" rel="alternate" type="text/html" title="Visual Concept综述（二）" /><published>2022-07-10T00:00:00+08:00</published><updated>2022-07-10T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/10/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%BA%8C)</id><content type="html" xml:base="http://localhost:4000/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">&lt;h3 id=&quot;系列论文&quot;&gt;系列论文&lt;/h3&gt;
 
 &lt;h4 id=&quot;neural-discrete-representation-learning&quot;&gt;&lt;a href=&quot;https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html&quot;&gt;Neural Discrete Representation Learning&lt;/a&gt;&lt;/h4&gt;
 
@@ -83,6 +154,8 @@
 &lt;h5 id=&quot;model&quot;&gt;Model&lt;/h5&gt;
 
 &lt;p&gt;VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;p&gt;其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。&lt;/p&gt;
 
@@ -100,7 +173,7 @@
 
 &lt;p&gt;在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的）&lt;/p&gt;
 
-&lt;p&gt;我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Discrete Representation Learning Quesion Discrete representations are a natural fit for complex reasoning, planning and predictive learning. Model VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations. 其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。 VQ-VAE模型结构如上图所示。 当图像输入x传入时： 经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。 将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。 将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。 在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的） 我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</summary></entry><entry><title type="html">Visual Concept综述（一）</title><link href="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" rel="alternate" type="text/html" title="Visual Concept综述（一）" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%80)</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
+&lt;p&gt;我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。&lt;/p&gt;</content><author><name>Hiski</name><email>hiskivv@gmail.com</email></author><category term="专题笔记" /><summary type="html">系列论文 Neural Discrete Representation Learning Quesion Discrete representations are a natural fit for complex reasoning, planning and predictive learning. Model VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.</summary></entry><entry><title type="html">Visual Concept综述（一）</title><link href="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" rel="alternate" type="text/html" title="Visual Concept综述（一）" /><published>2022-07-09T00:00:00+08:00</published><updated>2022-07-09T00:00:00+08:00</updated><id>http://localhost:4000/2022/07/09/%E3%80%90%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0%E3%80%91Visual%20Concept%E7%BB%BC%E8%BF%B0(%E4%B8%80)</id><content type="html" xml:base="http://localhost:4000/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">&lt;h3 id=&quot;从bow-model开始&quot;&gt;从BoW model开始&lt;/h3&gt;
 
 &lt;p&gt;词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。&lt;/p&gt;
 

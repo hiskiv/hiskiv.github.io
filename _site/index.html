@@ -190,6 +190,89 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
   
 
 
+<article id="post-2022-07-14-【专题笔记】Visual Concept综述（四）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" class="flip-title">
+        Visual Concept综述（四）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-14T00:00:00+08:00">14 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      决策树：另一种高可解释性的模型。以及对visual concept系列概念的初步整理。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="neural-prototype-trees-for-interpretable-fine-grained-image-recognition"><a href="">Neural Prototype Trees for Interpretable Fine-grained Image Recognition</a></h4>
+
+<p><strong>motivation/achievement</strong>:</p>
+
+<ol>
+  <li>希望在细粒度(fine-grained)图像分类任务上能取得更好的可解释性。决策树模型本身具有的强解释性与ProtoPNet相结合，可以得到更好的可解释性。</li>
+  <li>在分类任务的准确度上比ProtoPNet更优，同时相比之下只需要10%的prototypes。</li>
+</ol>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/">Visual Concept综述（四）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
 <article id="post-2022-07-13-【专题笔记】Visual Concept综述（三）" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -246,15 +329,13 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
   </header>
 
   
-    <h3 id="系列论文">系列论文</h3>
+    <p>关于Visual concept这一名词：</p>
 
-<p><a href="">Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention</a></p>
-
-<h4 id="approximating-cnns-with-bag-of-localfeatures-models-works-surprisingly-well-on-imagenet"><a href="">APPROXIMATING CNNS WITH BAG-OF-LOCALFEATURES MODELS WORKS SURPRISINGLY WELL ON IMAGENET</a></h4>
-
-<p><strong>Motivation</strong>: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。</p>
-
-<p><strong>Model</strong>：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。</p>
+<ol>
+  <li>What examples are there of a particular visual concept?
+By a visual concept we mean a collection of objects with ‘‘characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. —- from learn-able and non-learn-able Visual Concepts by Haim Shvaster</li>
+  <li>concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。</li>
+</ol>
 
 
     
@@ -340,23 +421,6 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
 <p>VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.</p>
 
-<p>其基本思想即将encoder的输出量化到离散的embedding space中的向量上。模型参数包括encoder、decoder中所有参数以及embedding space中的所有$e_k$。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008qPTh8ly1h41mrpza74j312b0cagqc.jpg" alt="image.png" style="zoom:50%;" /></p>
-
-<p>VQ-VAE模型结构如上图所示。</p>
-
-<p>当图像输入x传入时：</p>
-
-<ol>
-  <li>经过encoder，得到输出向量$Z_e(x)$，大小为$B\times D\times H\times W$。这里D是量化向量的维度。</li>
-  <li>将$Z_e(X)$ reshape成大小为$B\times H\times W, D$，对每个D维向量，与embedding space中K个向量比较，找到距离最近的，向量$e_k$。</li>
-  <li>将$e_k$作为VQ-VAE的编码。也为decoder的输入$z_q(x)$。</li>
-</ol>
-
-<p>在学习时，我们直接将decoder输入$z_q(x)$的梯度向前传递作为encoder输出的梯度，如上图红色的$\nabla_z L$所示。（因为argmin是不光滑的）</p>
-
-<p>我们可以将这里embedding space中学习得到的向量$e_k$视作从x分布中学习到的隐式表示，即visual concept。</p>
 
     
     
@@ -521,82 +585,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/2022/07/07/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-DenseNet/">【论文笔记】DenseNet</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-<article id="post-2022-07-06-【论文笔记】Batch Normalization" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/" class="flip-title">
-        【论文笔记】Batch Normalization
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2022-07-06T00:00:00+08:00">06 Jul 2022</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论文笔记</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      Sergey等人提出的批归一化方法很好地平衡了初始化时的方差，并加快了训练速度，一定程度上也能够解决梯度消失问题。
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>论文原文链接：<a href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</a></p>
-
-<p>这两天读了大名鼎鼎的ResNet，主要用于解决层数增加时的degradation问题。文章里提到了对于层数增加可能导致的梯度消失问题，可以通过Batch Normalization层解决。之前在cs231n里也有学习过BN层，但是整体学得懵懵懂懂，因此还是决定趁此机会好好把它弄明白。</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2022/07/06/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-Batch-Normalization/">【论文笔记】Batch Normalization</a>
 
       </p>
     </footer>
