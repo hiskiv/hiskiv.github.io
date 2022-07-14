@@ -16,6 +16,8 @@ excerpt_separator: <!--more-->
    By a visual concept we mean a collection of objects with ''characteristic shape features” that distinguish them from other objects. Examples can be rectangles, triangles, houses, elephants. ---- from learn-able and non-learn-able Visual Concepts by Haim Shvaster
 2. concept：物体属性（颜色，形状，材质）。其实物体的类别本身也可以看作是一种属性，所以concept这个概念意义非常的广泛。
 
+<!--more-->
+
 ### 系列论文
 
 [Explaining Deep Convolutional Neural Networks via Latent Visual-Semantic Filter Attention]()
@@ -25,8 +27,6 @@ excerpt_separator: <!--more-->
 **Motivation**: 仍然是出于原本深度神经网络缺乏可解释性的缺点而采用。考虑到在深度神经网络之前较常使用的BoF模型，希望能通过融入BoF模型特点来提高可解释性。
 
 **Model**：BagNets - 融合了BoF模型与DNN，在保留BoF模型一定可解释性的同时拥有较好的表现。
-
-<!--more-->
 
 <img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h45gppj693j30kk0g0ju7.jpg" alt="image-20220713111722323.png" style="zoom:50%;" />
 
