@@ -36,14 +36,14 @@ excerpt_separator: <!--more-->
 
 **Definition**: Properties of an image constituent. It can contain information of shape, material, high level concept or even (sub)object class.
 
-**Form**: The form of visual concepts can be set of feature vectors (maybe discrete), or human specified pixel/region labels (eg. *Network dissection*).
+**Form**: The form of visual concepts can be a set of feature vectors (maybe discrete), or human specified pixel/region labels (eg. *Network dissection*).
 
 **Origin**: Traditional model BoF, using codes from a discrete codebook to encode original image (without caring spacial relations).
 
 **Motivation/goal**:
 
-1. Can maintain a high interpretability (*ProtoPNet* etc. and *NetDissection* etc.)
-2. Can be spanned to fit some discrete properties (*VQ-VAE* etc.)
+1. Can maintain a high interpretability (*ProtoPNet* etc. and *NetDissection* etc.)	
+2. Can be spanned to fit some discrete properties (*VQ-VAE* etc.) 
 3. Can ensemble some global properties/context of a category of images (*VQGAN* etc.)
 4. Because the codebook is finite and discrete, it's easier to deal with
 
@@ -53,7 +53,7 @@ excerpt_separator: <!--more-->
 
 - prototypes based (ProtoPNet, NP-ProtoPNet, Prototype trees)
 
-- an embedding codebook of latent features (VQ-VAE, VQGAN) [similar to prototypes]
+- embedding codebook of latent features (VQ-VAE, VQGAN) [similar to prototypes]
 
 - dataset with human-labeled concepts on pixel level or region level (NetDissection)
 
