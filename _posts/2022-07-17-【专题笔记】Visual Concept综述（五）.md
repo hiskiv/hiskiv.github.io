@@ -2,7 +2,7 @@
 layout: post
 title: Visual Concept综述（五）
 description: >
-  占位符
+  通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
@@ -18,6 +18,8 @@ excerpt_separator: <!--more-->
 分解原图像，找到对象的各个子部件（object parts），通过这些子部件综合判断。然而寻找object parts本就是个棘手的问题。作者关注在fine-grained recognition上，即同一个超类的图像部件有相同的视觉特征（如所有鸟的尾巴都有相同的形状）。
 
 最主要的难点在于，只有image level标签的情况下，关于object parts的信息是不明确的。对此，作者创造性地提出一个先验假设：**对于一张图片，一个object part的出现是符合U形分布的**。例如基本每张鸟类图片都会出现鸟的头部，但不是所有图片都会出现鸟的腿部。
+
+<!--more-->
 
 **related work**:
 
@@ -38,7 +40,7 @@ excerpt_separator: <!--more-->
 2. Region Feature Extraction and Attribution
 3. Attention Based Classification
 
-由于唯一的监督标签是$y$，因此不能保证dictionary $D$一定能捕捉到有意义可解释的object parts。作者考虑了前面提到的prior，即object part $d_k$出现在set $X_{1:N}$中的概率$p(d_k| X_{1:N})$遵循U形分布。
+由于唯一的监督标签是$y$，因此不能保证dictionary $D$一定能捕捉到有意义可解释的object parts。作者考虑了前面提到的prior，即object part $d_k$出现在set $X_{1:N}$中的概率$p(d_k\vert X_{1:N})$遵循U形分布。
 
 **conclude**
 
