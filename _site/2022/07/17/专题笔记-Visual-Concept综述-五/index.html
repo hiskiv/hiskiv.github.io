@@ -29,8 +29,8 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 <meta property="og:title" content="Visual Concept综述（五）" />
 <meta name="author" content="Hiski" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="占位符" />
-<meta property="og:description" content="占位符" />
+<meta name="description" content="通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。" />
+<meta property="og:description" content="通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。" />
 <link rel="canonical" href="http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/" />
 <meta property="og:url" content="http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/" />
 <meta property="og:site_name" content="Hiskiii" />
@@ -39,7 +39,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Visual Concept综述（五）" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-17T00:00:00+08:00","datePublished":"2022-07-17T00:00:00+08:00","description":"占位符","headline":"Visual Concept综述（五）","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Hiski"},"dateModified":"2022-07-17T00:00:00+08:00","datePublished":"2022-07-17T00:00:00+08:00","description":"通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。","headline":"Visual Concept综述（五）","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/icons/icon.png"},"name":"Hiski"},"url":"http://localhost:4000/2022/07/17/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%94/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -234,7 +234,7 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
   
     <p class="message" >
-      占位符
+      通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。
 
     </p>
   
@@ -252,6 +252,8 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 <p>分解原图像，找到对象的各个子部件（object parts），通过这些子部件综合判断。然而寻找object parts本就是个棘手的问题。作者关注在fine-grained recognition上，即同一个超类的图像部件有相同的视觉特征（如所有鸟的尾巴都有相同的形状）。</p>
 
 <p>最主要的难点在于，只有image level标签的情况下，关于object parts的信息是不明确的。对此，作者创造性地提出一个先验假设：<strong>对于一张图片，一个object part的出现是符合U形分布的</strong>。例如基本每张鸟类图片都会出现鸟的头部，但不是所有图片都会出现鸟的腿部。</p>
+
+<!--more-->
 
 <p><strong>related work</strong>:</p>
 
@@ -276,14 +278,7 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
   <li>Attention Based Classification</li>
 </ol>
 
-<table>
-  <tbody>
-    <tr>
-      <td>由于唯一的监督标签是$y$，因此不能保证dictionary $D$一定能捕捉到有意义可解释的object parts。作者考虑了前面提到的prior，即object part $d_k$出现在set $X_{1:N}$中的概率$p(d_k</td>
-      <td>X_{1:N})$遵循U形分布。</td>
-    </tr>
-  </tbody>
-</table>
+<p>由于唯一的监督标签是$y$，因此不能保证dictionary $D$一定能捕捉到有意义可解释的object parts。作者考虑了前面提到的prior，即object part $d_k$出现在set $X_{1:N}$中的概率$p(d_k\vert X_{1:N})$遵循U形分布。</p>
 
 <p><strong>conclude</strong></p>
 
@@ -417,32 +412,32 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
 
 <li>
+  <a href="/2022/07/20/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%83/" class="h4 flip-title">
+    <span>Visual Concept综述（七）</span>
+  </a>
+  <time class="heading faded fine" datetime="2022-07-20T00:00:00+08:00">20 Jul 2022</time>
+</li>
+
+    
+      
+
+
+<li>
+  <a href="/2022/07/18/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%85%AD/" class="h4 flip-title">
+    <span>Visual Concept综述（六）</span>
+  </a>
+  <time class="heading faded fine" datetime="2022-07-18T00:00:00+08:00">18 Jul 2022</time>
+</li>
+
+    
+      
+
+
+<li>
   <a href="/2022/07/14/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%9B%9B/" class="h4 flip-title">
     <span>Visual Concept综述（四）</span>
   </a>
   <time class="heading faded fine" datetime="2022-07-14T00:00:00+08:00">14 Jul 2022</time>
-</li>
-
-    
-      
-
-
-<li>
-  <a href="/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/" class="h4 flip-title">
-    <span>Visual Concept综述（三）</span>
-  </a>
-  <time class="heading faded fine" datetime="2022-07-13T00:00:00+08:00">13 Jul 2022</time>
-</li>
-
-    
-      
-
-
-<li>
-  <a href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" class="h4 flip-title">
-    <span>Visual Concept综述（二）</span>
-  </a>
-  <time class="heading faded fine" datetime="2022-07-10T00:00:00+08:00">10 Jul 2022</time>
 </li>
 
     

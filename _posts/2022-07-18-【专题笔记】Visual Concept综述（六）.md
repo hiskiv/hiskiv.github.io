@@ -2,7 +2,7 @@
 layout: post
 title: Visual Concept综述（六）
 description: >
-  占位符
+  本次阅读两篇论文，分别提出自解释的网络与解耦视觉特征表示，后者仍需进一步理解。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
@@ -18,6 +18,8 @@ excerpt_separator: <!--more-->
 论文发表时间是2018年，这段时期大部分的可解释性工作还都局限在post-hoc的模式，这种解释方式往往是局部的（对每个sample单独解释），甚至有时产生矛盾的解释。因此作者试图提出一种self-explanable模型，让模型自身便带有可解释性（也是后面prototype等大部分模型的方向）。
 
 此外，作者还提出了可解释模型需满足的三个性质：stability, explicitness, faithfulness，并论证以往可解释模型不可满足，但提出的模型可以满足这三条性质。
+
+<!--more-->
 
 **model**:
 

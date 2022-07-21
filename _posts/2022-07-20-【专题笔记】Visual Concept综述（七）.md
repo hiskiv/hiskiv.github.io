@@ -2,7 +2,7 @@
 layout: post
 title: Visual Concept综述（七）
 description: >
-  占位符
+  关于patch based的两篇visual concept相关论文。以及一篇用prototype方法提高鲁棒性的论文。
 tags: [专题笔记]
 excerpt_separator: <!--more-->
 ---
@@ -18,6 +18,8 @@ Key point：
 如何表达一种可解释性？设ML模型的状态是一个由基向量$e_m$张成的向量空间$E_m$，其中$e_m$可以是如输入特征即神经元激活状态等。而人类大脑则在某些隐式向量$e_h$张成的空间$E_h$下工作。一个模型的“解释(interpretation)”即可视作一个函数$g: E_m\rightarrow E_h$。
 
 具体而言，本文使用CAV (Concept activation vectors)来区分某一concept，而利用分类分数对CAV的方向导数来判断某一类别对某一concept的敏感度。
+
+<!--more-->
 
 Model:
 
@@ -61,7 +63,15 @@ Limitations:
 1. 这种方法仅适用于提取出以“一组像素”的形式而存在的concepts，仅通过segmentation提取concept无法学到更抽象级别的concepts
 2. 依赖于segmentation算法的表现，而现阶段的大部分segmentation算法在多尺度上表现可能还不算太好
 
+#### [Towards Robust Fine-grained Recognition by Maximal Separation of Discriminative Features]()
 
+Motivation:
 
+本文主要想解决的问题在于提高fine-grained recognition问题对adversarial attacks的鲁棒性。为达到这一点，作者要实现的目标是使每一类的判别区域和其他类尽量分开，同时将非判别的prototype（如背景里的海）对最终预测的影响降到最小。（如下图所示）
 
+<img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h4dmjo1qbaj30nt0a7tc0.jpg" alt="image.png" style="zoom:70%;" />
+
+Model:
+
+<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220720194431340.png" alt="image-20220720194431340" style="zoom:60%;" />
 

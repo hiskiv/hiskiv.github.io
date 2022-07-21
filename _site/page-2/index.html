@@ -24,7 +24,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 
   
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Page 2 of 2 for Home | Hiskiii</title>
+<title>Page 2 of 3 for Home | Hiskiii</title>
 <meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Home" />
 <meta name="author" content="Hiski" />
@@ -36,6 +36,7 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
 <meta property="og:site_name" content="Hiskiii" />
 <meta property="og:type" content="website" />
 <link rel="prev" href="http://localhost:4000/" />
+<link rel="next" href="http://localhost:4000/page-3/" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
@@ -187,6 +188,172 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
     
 
   
+  
+
+
+<article id="post-2022-07-10-【专题笔记】Visual Concept综述（二）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" class="flip-title">
+        Visual Concept综述（二）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-10T00:00:00+08:00">10 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      VQ-VAE模型中离散的embedding space向量即是某种semantic representations。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="neural-discrete-representation-learning"><a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">Neural Discrete Representation Learning</a></h4>
+
+<h5 id="quesion">Quesion</h5>
+
+<p>Discrete representations are a natural fit for complex reasoning, planning and predictive learning.</p>
+
+<h5 id="model">Model</h5>
+
+<p>VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">Visual Concept综述（二）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+<article id="post-2022-07-09-【专题笔记】Visual Concept综述（一）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" class="flip-title">
+        Visual Concept综述（一）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-09T00:00:00+08:00">09 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      Visual concept的概念来源于计算机视觉的BOW模型。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="从bow-model开始">从BoW model开始</h3>
+
+<p>词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。</p>
+
+<p>BoW模型最主要的特点在于其并不包含原来文本中单词的顺序信息。</p>
+
+<p>词袋向量显然不一定能很好的表示原来文本的特征，一是其无序性，二是某些stop words频率极高但并没有什么用。一种方法是通过对每个term进行weighting。</p>
+
+<p><strong>n-gram</strong>模型对无序性这一点做了一点改进。它将文本中连续的n个terms当做一个词，其余采用和BoW模型一致的处理方式。这样就保留了文本中的一些连续信息，而BoW模型则可以视作是n-gram模型中n取1时的特殊情况。</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">Visual Concept综述（一）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
   
 
 
@@ -415,83 +582,6 @@ on <a href="/tag/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="flip-title">论�
 </article>
 
 
-  
-
-
-<article id="post-2017-11-17-hydejacks-new-design" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2017/11/17/hydejacks-new-design/" class="flip-title">
-        Hydejack's New Design
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2017-11-17T00:00:00+08:00">17 Nov 2017</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <span>Hydejack</span>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      This post introduces Hydejack’s now background image, color palette and logo.
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <p>While v7 brings an <a href="/CHANGELOG/#v700">insane amount of new stuff</a>, the most notable change is the new background image.
-It is no longer <em>anti-selling</em> the theme.
-The old image was a blurred version of Napoleon Bonaparte, which was just… weird. I could tell the story of how this came to be,
-but I’d rather show you the new and improved background image.</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2017/11/17/hydejacks-new-design/">Hydejack's New Design</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
 
 <h2 class="sr-only">Pagination</h2>
 <nav class="pagination heading clearfix" role="navigation">
@@ -500,7 +590,14 @@ but I’d rather show you the new and improved background image.</p>
       
       
       
-  <span class=" ">Older</span>
+  <a
+    class=" "
+    href="/page-3/"
+    rel="next"
+    
+  >
+    Older
+  </a>
 
 
     </li>

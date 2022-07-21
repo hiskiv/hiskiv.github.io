@@ -190,6 +190,170 @@ Powered by Hydejack v7.5.2 <https://qwtel.com/hydejack/>
   
 
 
+<article id="post-2022-07-20-【专题笔记】Visual Concept综述（七）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/20/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%83/" class="flip-title">
+        Visual Concept综述（七）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-20T00:00:00+08:00">20 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      本次关注patch based的两篇visual concept相关论文。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="interpretability-beyond-feature-attribution-quantitative-testing-with-concept-activation-vectors-tcav"><a href="">Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV)</a></h4>
+
+<p>Key point：</p>
+
+<p>如何表达一种可解释性？设ML模型的状态是一个由基向量$e_m$张成的向量空间$E_m$，其中$e_m$可以是如输入特征即神经元激活状态等。而人类大脑则在某些隐式向量$e_h$张成的空间$E_h$下工作。一个模型的“解释(interpretation)”即可视作一个函数$g: E_m\rightarrow E_h$。</p>
+
+<p>具体而言，本文使用CAV (Concept activation vectors)来区分某一concept，而利用分类分数对CAV的方向导数来判断某一类别对某一concept的敏感度。</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/20/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%83/">Visual Concept综述（七）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
+<article id="post-2022-07-18-【专题笔记】Visual Concept综述（六）" class="page post mb6" role="article">
+  <header>
+    <h1 class="post-title">
+      <a href="/2022/07/18/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%85%AD/" class="flip-title">
+        Visual Concept综述（六）
+      </a>
+    </h1>
+
+    <p class="post-date heading">
+      
+      <time datetime="2022-07-18T00:00:00+08:00">18 Jul 2022</time>
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
+
+    </p>
+
+    
+
+
+
+  
+    <p class="message" >
+      本次阅读两篇论文，分别提出自解释的网络与解耦视觉特征表示，后者仍需进一步理解。
+
+    </p>
+  
+
+
+  </header>
+
+  
+    <h3 id="系列论文">系列论文</h3>
+
+<h4 id="towards-robust-interpretability-with-self-explaining-neural-networks"><a href="">Towards Robust Interpretability with Self-Explaining Neural Networks</a></h4>
+
+<p><strong>motivation</strong>:</p>
+
+<p>论文发表时间是2018年，这段时期大部分的可解释性工作还都局限在post-hoc的模式，这种解释方式往往是局部的（对每个sample单独解释），甚至有时产生矛盾的解释。因此作者试图提出一种self-explanable模型，让模型自身便带有可解释性（也是后面prototype等大部分模型的方向）。</p>
+
+<p>此外，作者还提出了可解释模型需满足的三个性质：stability, explicitness, faithfulness，并论证以往可解释模型不可满足，但提出的模型可以满足这三条性质。</p>
+
+
+    
+    
+    <footer>
+      <p class="read-more">
+        Continue reading <a class="heading flip-title" href="/2022/07/18/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E5%85%AD/">Visual Concept综述（六）</a>
+
+      </p>
+    </footer>
+  
+</article>
+
+
+  
+
+
 <article id="post-2022-07-17-【专题笔记】Visual Concept综述（五）" class="page post mb6" role="article">
   <header>
     <h1 class="post-title">
@@ -237,7 +401,7 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
   
     <p class="message" >
-      占位符
+      通过假定一个object part的先验，可以辅助dictionary的寻找，帮助模型的训练。
 
     </p>
   
@@ -256,41 +420,6 @@ on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专�
 
 <p>最主要的难点在于，只有image level标签的情况下，关于object parts的信息是不明确的。对此，作者创造性地提出一个先验假设：<strong>对于一张图片，一个object part的出现是符合U形分布的</strong>。例如基本每张鸟类图片都会出现鸟的头部，但不是所有图片都会出现鸟的腿部。</p>
 
-<p><strong>related work</strong>:</p>
-
-<p>与ProtoPNet的不同点：</p>
-
-<ol>
-  <li>本文采用了region grouping方法来提供图像分段的解释</li>
-  <li>本文模型的学习是由object part出现的一个强力前提控制的（即上面所说的先验假设）</li>
-</ol>
-
-<p><strong>model</strong>:</p>
-
-<p>对于卷积层输出的feature maps $X_{1:N}={X_n}$，与其对应实际类别标签$y_{1:N}={y_n}$，其中$X_n\in \R^{D\times H\times W}$。子模型的目标即学习一个part dictionary$D=[d_1,d_2,\dots,d_K]\in \R^{D\times K}$(其中每个$d_k$代表一个object part concept，此即visual concept)以及决策函数$\hat{y}=\phi(X_n,D;\theta)$。</p>
-
-<p><img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h49rjngurnj30r10av0zo.jpg" alt="image.png" style="zoom: 55%;" /></p>
-
-<p>具体而言，该$\phi$函数由三部分组成：</p>
-
-<ol>
-  <li>Part Segmentation</li>
-  <li>Region Feature Extraction and Attribution</li>
-  <li>Attention Based Classification</li>
-</ol>
-
-<table>
-  <tbody>
-    <tr>
-      <td>由于唯一的监督标签是$y$，因此不能保证dictionary $D$一定能捕捉到有意义可解释的object parts。作者考虑了前面提到的prior，即object part $d_k$出现在set $X_{1:N}$中的概率$p(d_k</td>
-      <td>X_{1:N})$遵循U形分布。</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>conclude</strong></p>
-
-<p>本文最重要的贡献在于提出了一种更好地学习object part dictionary的方式，即通过假定一个object part的先验分布来控制训练过程。然而作者提出的U形分布在iNaturalist数据集上表现并不是特别好。如何找到更好的先验可以作为未来的研究方向。</p>
 
     
     
@@ -460,172 +589,6 @@ By a visual concept we mean a collection of objects with ‘‘characteristic sh
     <footer>
       <p class="read-more">
         Continue reading <a class="heading flip-title" href="/2022/07/13/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%89/">Visual Concept综述（三）</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-<article id="post-2022-07-10-【专题笔记】Visual Concept综述（二）" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/" class="flip-title">
-        Visual Concept综述（二）
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2022-07-10T00:00:00+08:00">10 Jul 2022</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      VQ-VAE模型中离散的embedding space向量即是某种semantic representations。
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <h3 id="系列论文">系列论文</h3>
-
-<h4 id="neural-discrete-representation-learning"><a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">Neural Discrete Representation Learning</a></h4>
-
-<h5 id="quesion">Quesion</h5>
-
-<p>Discrete representations are a natural fit for complex reasoning, planning and predictive learning.</p>
-
-<h5 id="model">Model</h5>
-
-<p>VQ-VAE: combining the variational autoencoder (VAE) framework with discrete latent representations.</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2022/07/10/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%BA%8C/">Visual Concept综述（二）</a>
-
-      </p>
-    </footer>
-  
-</article>
-
-
-  
-
-
-<article id="post-2022-07-09-【专题笔记】Visual Concept综述（一）" class="page post mb6" role="article">
-  <header>
-    <h1 class="post-title">
-      <a href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/" class="flip-title">
-        Visual Concept综述（一）
-      </a>
-    </h1>
-
-    <p class="post-date heading">
-      
-      <time datetime="2022-07-09T00:00:00+08:00">09 Jul 2022</time>
-      
-      
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-on <a href="/tag/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0/" class="flip-title">专题笔记</a>
-
-    </p>
-
-    
-
-
-
-  
-    <p class="message" >
-      Visual concept的概念来源于计算机视觉的BOW模型。
-
-    </p>
-  
-
-
-  </header>
-
-  
-    <h3 id="从bow-model开始">从BoW model开始</h3>
-
-<p>词袋（Bag of words）模型是一种特征表示方式。最初用于文本特征上。最常见的词袋特征是词频，即一段文本对应词袋向量中的每一个分量代表该分量对应单词在文本中出现的次数。</p>
-
-<p>BoW模型最主要的特点在于其并不包含原来文本中单词的顺序信息。</p>
-
-<p>词袋向量显然不一定能很好的表示原来文本的特征，一是其无序性，二是某些stop words频率极高但并没有什么用。一种方法是通过对每个term进行weighting。</p>
-
-<p><strong>n-gram</strong>模型对无序性这一点做了一点改进。它将文本中连续的n个terms当做一个词，其余采用和BoW模型一致的处理方式。这样就保留了文本中的一些连续信息，而BoW模型则可以视作是n-gram模型中n取1时的特殊情况。</p>
-
-
-    
-    
-    <footer>
-      <p class="read-more">
-        Continue reading <a class="heading flip-title" href="/2022/07/09/%E4%B8%93%E9%A2%98%E7%AC%94%E8%AE%B0-Visual-Concept%E7%BB%BC%E8%BF%B0-%E4%B8%80/">Visual Concept综述（一）</a>
 
       </p>
     </footer>
