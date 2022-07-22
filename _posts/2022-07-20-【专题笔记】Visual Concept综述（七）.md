@@ -73,5 +73,5 @@ Motivation:
 
 Model:
 
-<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220720194431340.png" alt="image-20220720194431340" style="zoom:60%;" />
+<img src="http://tva1.sinaimg.cn/large/008u1Mkqly1h4ec8wdwsfj30ot0cymzr.jpg" alt="image-20220720194431340.png" style="zoom: 67%;" />
 
